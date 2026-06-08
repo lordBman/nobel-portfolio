@@ -54,15 +54,15 @@ import { MobileProjectView, WebProjectView } from "../components";
     mobileApps: [
         {
             id: "mobile1",
-            title: "Expense Tracker",
+            title: "BWeather",
             description: "Cross-platform finance app with charts, dark/light mode, biometric auth.",
             language: "Dart",
             framework: "Flutter",
-            screenshots: [
-                "https://placehold.co/300x200/0f172a/white?text=Mobile+Dark+Mode",
-                "https://placehold.co/300x200/f9f9ff/111?text=Mobile+Light+Mode",
-                "https://placehold.co/500x200/334155/white?text=Tablet+View"
-            ],
+            screenshots: {
+                light: "https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png",
+                dark: "https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-24%20073214.png",
+                tablet: "https://placehold.co/500x200/334155/white?text=Tablet+View"
+            },
             downloadLinks: {
                 android: "https://play.google.com/store/apps/details?id=expense.tracker",
                 ios: "https://apps.apple.com/app/expense-tracker",
@@ -75,10 +75,10 @@ import { MobileProjectView, WebProjectView } from "../components";
             description: "Workout planner, step counter, and health insights for mobile & tablet.",
             language: "Dart, Kotlin",
             framework: "Flutter & Android Native",
-            screenshots: [
-                "https://placehold.co/300x200/18181b/white?text=Fitness+Dark+UI",
-                "https://placehold.co/300x200/ffffff/000?text=Fitness+Light+UI"
-            ],
+            screenshots: {
+                light: "https://placehold.co/300x200/18181b/white?text=Fitness+Dark+UI",
+                dark: "https://placehold.co/300x200/ffffff/000?text=Fitness+Light+UI"
+            },
             downloadLinks: {
                 android: "https://play.google.com/store/apps/details?id=fitness.mate",
                 ios: "https://apps.apple.com/app/fitness-mate",
@@ -91,10 +91,10 @@ import { MobileProjectView, WebProjectView } from "../components";
             description: "Personalized news app, offline reading, dark/light, tablet optimized.",
             language: "Dart",
             framework: "Flutter, Riverpod",
-            screenshots: [
-                "https://placehold.co/300x200/2d2f36/ffffff?text=News+Dark",
-                "https://placehold.co/300x200/fef9e8/333?text=News+Light"
-            ],
+            screenshots: {
+                light: "https://placehold.co/300x200/2d2f36/ffffff?text=News+Dark",
+                dark: "https://placehold.co/300x200/fef9e8/333?text=News+Light"
+            },
             downloadLinks: {
                 android: "https://play.google.com/store/apps/details?id=news.aggregator",
                 ios: "https://apps.apple.com/app/news-aggregator",
@@ -107,10 +107,10 @@ import { MobileProjectView, WebProjectView } from "../components";
             description: "Productivity suite with kanban, cross-platform sync, tablet support.",
             language: "Dart",
             framework: "Flutter, Supabase",
-            screenshots: [
-                "https://placehold.co/300x200/1a1a2e/f0f0f0?text=Task+Dark+Mobile",
-                "https://placehold.co/300x200/f5f5fa/1a1a2e?text=Task+Light+Mobile"
-            ],
+            screenshots: {
+                light: "https://placehold.co/300x200/1a1a2e/f0f0f0?text=Task+Dark+Mobile",
+                dark: "https://placehold.co/300x200/f5f5fa/1a1a2e?text=Task+Light+Mobile"
+            },
             downloadLinks: {
                 android: "https://play.google.com/store/apps/details?id=task.flow",
                 ios: "https://apps.apple.com/app/taskflow",
@@ -120,7 +120,7 @@ import { MobileProjectView, WebProjectView } from "../components";
     ]
 };
 
-const Projects = () =>{
+/*const Projects = () =>{
     const featuredWebs = projectsData.websites.slice(0,3);
     const featuredMobiles = projectsData.mobileApps.slice(0,3);
 
@@ -146,6 +146,36 @@ const Projects = () =>{
             </div>
         </div>
     );
-}
+}*/
 
+const Projects = () =>{
+    return (
+        <div class="container" id="experience" style={{ "max-width": "1300px", margin: "0 auto",  "margin-top": "50px" }}>
+            <h2 class="timeline-header">
+                <i class="glyphs--rocket-duo" /> Projects
+            </h2>
+            <div class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem" }}>
+                <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={"https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png"} alt="screenshot" />
+                <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
+                    <div style={{ flex: 1 }}>
+                        <h3>BWeather</h3>
+                        <h4><b>Platforms:</b> iOS / Android (tablet & phone)</h4>
+                        <h4><b>Tech Stack:</b> Flutter (Dart), BLoC (global state management), modular architecture, REST API (weather data)</h4>
+                        
+                        <div>
+                            <span style={{ "font-size": "16px" }}>About</span>
+                            <p class="desc">BWeather is a clean, feature‑rich weather application built for both mobile and tablet form factors. It provides real‑time weather information with a focus on intuitive UX and scalable code structure. The app demonstrates robust state handling, responsive layouts, and a polished dual‑theme experience.</p>
+                        </div>
+                        <div class="card-links">
+                            <a href={"#"} target="_blank"><i class="fab fa-android"></i> Android</a>
+                            <a href={"#"} target="_blank"><i class="fab fa-apple"></i> iOS</a>
+                            <a href={"#"} target="_blank"><i class="fas fa-mobile-alt"></i> HarmonyOS</a>
+                        </div>
+                    </div>
+                    <div><span class="tech-badge">Dart</span><span class="tech-badge">Flutter</span></div>
+                </div>
+            </div>
+        </div>
+    );
+}
 export default Projects

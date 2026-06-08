@@ -6,7 +6,11 @@ interface MobileProject{
     description: string;
     language: string;
     framework: string;
-    screenshots: string[];
+    screenshots: {
+        light: string;
+        dark: string;
+        table?: string
+    };
     downloadLinks: {
         android?: string;
         ios?: string;
@@ -17,8 +21,12 @@ interface MobileProject{
 const MobileProjectView = (props: { project: MobileProject }) =>{
     return (
         <div class="project-card">
-            <div class="screenshot-area">
-                { props.project.screenshots.map((url)=> (<img class="screenshot-img" src={url} alt="screenshot" />)) }
+            <div class="mobile-screenshot-area">
+                <img class="mobile-screenshot-img" src={props.project.screenshots.light} alt="screenshot" />
+                <img class="mobile-screenshot-img" src={props.project.screenshots.dark} alt="screenshot" />
+                <Show when={props.project.screenshots.table}>
+                    <img class="screenshot-img" src={props.project.screenshots.table} alt="screenshot" />
+                </Show>
             </div>
             <div class="card-content">
                 <h3>📱 {props.project.title}</h3>

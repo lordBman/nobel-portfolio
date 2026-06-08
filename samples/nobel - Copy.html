@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nobel Okelekele | Web & Mobile App Developer</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header & nav */
+        header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.92);
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #2563eb;
+        }
+
+        /* buttons */
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            background: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            border-color: #2563eb;
+            background: #f1f5f9;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+            border-left: 5px solid #2563eb;
+            padding-left: 20px;
+        }
+        /* hero */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 60px 0 40px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-content {
+            flex: 2;
+        }
+        .hero-badge {
+            background: #e0e7ff;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #334155;
+            max-width: 550px;
+            margin-bottom: 28px;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .contact-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
+        .hero-avatar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(145deg, #2563eb20, #7c3aed20);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2563eb;
+            border: 3px solid white;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        /* cards grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .project-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1);
+            transition: 0.25s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 36px -16px rgba(0,0,0,0.15);
+        }
+        .screenshot-area {
+            background: #f1f5f9;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .screenshot-img {
+            width: 130px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background: #0f172a;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .tech-badge {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin: 8px 4px 8px 0;
+        }
+        .desc {
+            color: #475569;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .card-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .card-links a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .view-all-link {
+            text-align: right;
+            margin: 20px 0 40px;
+        }
+        .experience, .education, .skills {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e9eef3;
+        }
+        .timeline-item {
+            margin-bottom: 28px;
+        }
+        .job-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .company {
+            color: #2563eb;
+            font-weight: 500;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .skill-pill {
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+            color: #64748b;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+            .nav-links {
+                gap: 18px;
+                margin-top: 12px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo"><h1>Nobel.dev</h1></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <div class="container" id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-code"></i> Web & Mobile Dev</span>
+                <h2>Nobel Okelekele<br>Building cross-platform excellence</h2>
+                <p>Highly motivated Web & Cross-platform Mobile Developer with 3+ years experience. Proficient in Flutter, React, React Native, NodeJS, and Android Native.</p>
+                <div class="contact-info">
+                    <div class="contact-chip"><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</div>
+                    <div class="contact-chip"><i class="fas fa-phone-alt"></i> +234 (0)7087952034</div>
+                    <div class="contact-chip"><i class="fas fa-envelope"></i> okelelekennel@gmail.com</div>
+                    <div class="contact-chip"><i class="fab fa-github"></i> github.com/lordbman</div>
+                </div>
+                <div style="margin-top: 28px;">
+                    <a href="#projects" class="btn-primary">View Projects →</a>
+                    <a href="#contact" style="margin-left: 16px;" class="btn-outline">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-placeholder">
+                    <span>N⚡</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <!-- Dynamic projects will be injected here (homepage: max 3 per category) -->
+        <div id="featured-projects-container"></div>
+        <div class="view-all-link">
+            <a href="#" id="viewAllProjectsBtn" class="btn-outline" style="background:white;"><i class="fas fa-arrow-right"></i> View All Projects (Full list)</a>
+        </div>
+    </div>
+
+    <!-- Full projects modal / full page alternative: we'll create a hidden full-projects section that toggles -->
+    <div id="full-projects-section" style="display: none; margin: 40px 0;">
+        <div class="container">
+            <h2 class="section-title">All Projects <button id="closeFullProjects" style="float:right;" class="btn-outline">← Back to homepage</button></h2>
+            <div id="all-projects-grid" class="projects-grid"></div>
+        </div>
+    </div>
+
+    <!-- Experience & Skills -->
+    <div class="container" id="experience">
+        <div class="experience">
+            <h2 class="section-title" style="border-left-color:#10b981;">Work Experience</h2>
+            <div class="timeline-item">
+                <div class="job-title">Senior Engineer & Technical Instructor</div>
+                <div class="company">Golden Viosam LTD | 2017 - 2019</div>
+                <p>Led software development initiatives, taught technical courses, built full-stack solutions with React and NodeJS. Architected cross-platform mobile prototypes.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="job-title">Mobile App Developer (Flutter & Android)</div>
+                <div class="company">Essential NG & Freelance | 2020 - Current</div>
+                <p>Developed and maintained Android/iOS apps using Flutter & Android Native (Jetpack Compose, XML). Designed 2D games with LibGDX, collaborated with clients, test-driven development, Git version control.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="job-title">Web & Backend Developer (Freelance)</div>
+                <div class="company">Freelance | 2022 - Current</div>
+                <p>Built responsive websites with React/Bootstrap, RESTful APIs with Express.js, MySQL/Prisma ORM, Firebase, Supabase. Also UI/UX design with Figma.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="job-title">Azure App Service Specialist</div>
+                <div class="company">Tek Experts | 2022 - Current</div>
+                <p>Website & API deployment on Azure, DevOps pipelines, troubleshooting App Service (Web Apps, Function Apps, Containers), Azure Storage & SQL integration.</p>
+            </div>
+            <div class="skills">
+                <h3>Tech Stack & Tools</h3>
+                <div class="skills-list">
+                    <span class="skill-pill">Flutter</span><span class="skill-pill">React</span><span class="skill-pill">React Native</span>
+                    <span class="skill-pill">Android Native</span><span class="skill-pill">NodeJS/Express</span><span class="skill-pill">Prisma</span>
+                    <span class="skill-pill">MySQL</span><span class="skill-pill">Firebase</span><span class="skill-pill">Supabase</span>
+                    <span class="skill-pill">Git/GitHub</span><span class="skill-pill">Azure App Service</span><span class="skill-pill">Figma</span>
+                    <span class="skill-pill">Bootstrap</span><span class="skill-pill">C++ (Embedded)</span>
+                </div>
+            </div>
+        </div>
+        <div class="education">
+            <h2 class="section-title" style="border-left-color:#8b5cf6;">Education & Hobbies</h2>
+            <p><strong>🎓 Bachelor of Science: Electrical/Electronics Engineering</strong><br>Niger Delta University, Nigeria (2014 - 2019)</p>
+            <p style="margin-top: 16px;"><strong>⚽ Hobbies:</strong> Soccer, Game development & playing video games, Embedded robotics (C++).</p>
+        </div>
+    </div>
+</main>
+
+<footer id="contact">
+    <div class="container">
+        <p><i class="fas fa-envelope"></i> okelelekennel@gmail.com  |  <i class="fab fa-github"></i> github.com/lordbman  |  <i class="fab fa-linkedin"></i> Nobel Okelekele</p>
+        <p style="margin-top: 12px;">© 2026 Nobel Okelekele — Web & Mobile Artisan</p>
+    </div>
+</footer>
+
+<script>
+    // --------------------------------------------------------------
+    // PROJECTS DATABASE (JSON structured) 
+    // Categories: Websites, Mobile App
+    // Each project has fields: title, description, language, framework, 
+    // screenshots (light/dark mode) array of img urls (we'll use placeholder images with light/dark demo),
+    // link_url (web), for mobile: downloadLinks { android, ios, harmony }.
+    // Due to demo env, we use unsplash/placeholders but showcase dark/light concept.
+    // --------------------------------------------------------------
+    const projectsData = {
+        websites: [
+            {
+                id: "web1",
+                title: "Fintech Dashboard",
+                description: "Modern financial analytics dashboard with light/dark theme, realtime charts.",
+                language: "TypeScript, Node.js",
+                framework: "React, Next.js, Tailwind",
+                screenshots: [
+                    "https://placehold.co/400x200/1e293b/white?text=Dark+Mode+Dashboard",
+                    "https://placehold.co/400x200/f8fafc/0f172a?text=Light+Mode+Dashboard"
+                ],
+                url: "https://example.com/fintech-demo"
+            },
+            {
+                id: "web2",
+                title: "Portfolio & Blog CMS",
+                description: "Dynamic blog platform with headless CMS, Prisma ORM, postgres.",
+                language: "JavaScript, SQL",
+                framework: "React, Express, Prisma",
+                screenshots: [
+                    "https://placehold.co/400x200/0f172a/white?text=Blog+Dark",
+                    "https://placehold.co/400x200/ffffff/111?text=Blog+Light"
+                ],
+                url: "https://example.com/blog-cms"
+            },
+            {
+                id: "web3",
+                title: "E-Commerce Storefront",
+                description: "Responsive e-commerce with cart, Stripe integration, fully responsive.",
+                language: "React, Node",
+                framework: "Next.js, Bootstrap",
+                screenshots: [
+                    "https://placehold.co/400x200/111827/f9fafb?text=Dark+Store",
+                    "https://placehold.co/400x200/f3f4f6/000?text=Light+Store"
+                ],
+                url: "https://example.com/shopdemo"
+            },
+            {
+                id: "web4",
+                title: "AI Image Generator UI",
+                description: "Frontend for stable diffusion, dark/light canvas, API integration.",
+                language: "Python Flask, JS",
+                framework: "React, Tailwind",
+                screenshots: [
+                    "https://placehold.co/400x200/1e1e2f/eeeeee?text=AI+Dark",
+                    "https://placehold.co/400x200/ffffff/2d2d2d?text=AI+Light"
+                ],
+                url: "https://example.com/ai-generator"
+            }
+        ],
+        mobileApps: [
+            {
+                id: "mobile1",
+                title: "Expense Tracker",
+                description: "Cross-platform finance app with charts, dark/light mode, biometric auth.",
+                language: "Dart",
+                framework: "Flutter",
+                screenshots: [
+                    "https://placehold.co/300x200/0f172a/white?text=Mobile+Dark+Mode",
+                    "https://placehold.co/300x200/f9f9ff/111?text=Mobile+Light+Mode",
+                    "https://placehold.co/500x200/334155/white?text=Tablet+View"
+                ],
+                downloadLinks: {
+                    android: "https://play.google.com/store/apps/details?id=expense.tracker",
+                    ios: "https://apps.apple.com/app/expense-tracker",
+                    harmony: "https://appgallery.huawei.com/app/expense-tracker"
+                }
+            },
+            {
+                id: "mobile2",
+                title: "Fitness Mate",
+                description: "Workout planner, step counter, and health insights for mobile & tablet.",
+                language: "Dart, Kotlin",
+                framework: "Flutter & Android Native",
+                screenshots: [
+                    "https://placehold.co/300x200/18181b/white?text=Fitness+Dark+UI",
+                    "https://placehold.co/300x200/ffffff/000?text=Fitness+Light+UI"
+                ],
+                downloadLinks: {
+                    android: "https://play.google.com/store/apps/details?id=fitness.mate",
+                    ios: "https://apps.apple.com/app/fitness-mate",
+                    harmony: "https://appgallery.huawei.com/app/fitness-mate"
+                }
+            },
+            {
+                id: "mobile3",
+                title: "News Aggregator",
+                description: "Personalized news app, offline reading, dark/light, tablet optimized.",
+                language: "Dart",
+                framework: "Flutter, Riverpod",
+                screenshots: [
+                    "https://placehold.co/300x200/2d2f36/ffffff?text=News+Dark",
+                    "https://placehold.co/300x200/fef9e8/333?text=News+Light"
+                ],
+                downloadLinks: {
+                    android: "https://play.google.com/store/apps/details?id=news.aggregator",
+                    ios: "https://apps.apple.com/app/news-aggregator",
+                    harmony: "https://appgallery.huawei.com/app/newsapp"
+                }
+            },
+            {
+                id: "mobile4",
+                title: "TaskFlow",
+                description: "Productivity suite with kanban, cross-platform sync, tablet support.",
+                language: "Dart",
+                framework: "Flutter, Supabase",
+                screenshots: [
+                    "https://placehold.co/300x200/1a1a2e/f0f0f0?text=Task+Dark+Mobile",
+                    "https://placehold.co/300x200/f5f5fa/1a1a2e?text=Task+Light+Mobile"
+                ],
+                downloadLinks: {
+                    android: "https://play.google.com/store/apps/details?id=task.flow",
+                    ios: "https://apps.apple.com/app/taskflow",
+                    harmony: "https://appgallery.huawei.com/taskflow"
+                }
+            }
+        ]
+    };
+
+    // Helper: render project card for website
+    function renderWebsiteCard(proj) {
+        const screenshotsHtml = proj.screenshots.map(src => `<img class="screenshot-img" src="${src}" alt="screenshot">`).join('');
+        return `
+            <div class="project-card">
+                <div class="screenshot-area">${screenshotsHtml}</div>
+                <div class="card-content">
+                    <h3>🌐 ${proj.title}</h3>
+                    <div><span class="tech-badge">${proj.language}</span><span class="tech-badge">${proj.framework}</span></div>
+                    <p class="desc">${proj.description}</p>
+                    <div class="card-links">
+                        <a href="${proj.url}" target="_blank" class="btn-outline" style="padding:6px 16px;">🔗 Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderMobileCard(proj) {
+        const screenshotsHtml = proj.screenshots.map(src => `<img class="screenshot-img" src="${src}" alt="mobile view">`).join('');
+        const dl = proj.downloadLinks;
+        let linksHtml = '';
+        if(dl.android) linksHtml += `<a href="${dl.android}" target="_blank"><i class="fab fa-android"></i> Android</a>`;
+        if(dl.ios) linksHtml += `<a href="${dl.ios}" target="_blank"><i class="fab fa-apple"></i> iOS</a>`;
+        if(dl.harmony) linksHtml += `<a href="${dl.harmony}" target="_blank"><i class="fas fa-mobile-alt"></i> HarmonyOS</a>`;
+        return `
+            <div class="project-card">
+                <div class="screenshot-area">${screenshotsHtml}</div>
+                <div class="card-content">
+                    <h3>📱 ${proj.title}</h3>
+                    <div><span class="tech-badge">${proj.language}</span><span class="tech-badge">${proj.framework}</span></div>
+                    <p class="desc">${proj.description}</p>
+                    <div class="card-links">${linksHtml}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    // display featured (only first 3 websites and first 3 mobile apps) on homepage
+    function renderFeaturedProjects() {
+        const featuredWebs = projectsData.websites.slice(0,3);
+        const featuredMobiles = projectsData.mobileApps.slice(0,3);
+        let html = `<div style="margin-bottom: 20px;"><h3 style="font-size:1.5rem;">💻 Websites & Web Apps</h3><div class="projects-grid">`;
+        featuredWebs.forEach(w => { html += renderWebsiteCard(w); });
+        html += `</div></div><div style="margin-top: 40px;"><h3 style="font-size:1.5rem;">📱 Mobile Apps (Android/iOS/HarmonyOS)</h3><div class="projects-grid">`;
+        featuredMobiles.forEach(m => { html += renderMobileCard(m); });
+        html += `</div></div>`;
+        document.getElementById('featured-projects-container').innerHTML = html;
+    }
+
+    // render all projects (full list)
+    function renderAllProjects() {
+        let allHtml = `<div><h3 style="font-size:1.6rem;">🌐 Websites</h3><div class="projects-grid">`;
+        projectsData.websites.forEach(w => { allHtml += renderWebsiteCard(w); });
+        allHtml += `</div></div><div style="margin-top: 50px;"><h3 style="font-size:1.6rem;">📱 Mobile Applications</h3><div class="projects-grid">`;
+        projectsData.mobileApps.forEach(m => { allHtml += renderMobileCard(m); });
+        allHtml += `</div></div>`;
+        document.getElementById('all-projects-grid').innerHTML = allHtml;
+    }
+
+    // Toggle between featured view and full view
+    const featuredContainer = document.getElementById('featured-projects-container');
+    const fullSection = document.getElementById('full-projects-section');
+    const viewAllBtn = document.getElementById('viewAllProjectsBtn');
+    const closeFullBtn = document.getElementById('closeFullProjects');
+
+    function showFullProjects() {
+        featuredContainer.style.display = 'none';
+        document.querySelector('#projects .view-all-link').style.display = 'none';
+        fullSection.style.display = 'block';
+        renderAllProjects();
+        window.scrollTo({ top: document.getElementById('projects').offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function showFeatured() {
+        featuredContainer.style.display = 'block';
+        document.querySelector('#projects .view-all-link').style.display = 'block';
+        fullSection.style.display = 'none';
+        renderFeaturedProjects();
+    }
+
+    viewAllBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showFullProjects();
+    });
+    if(closeFullBtn) {
+        closeFullBtn.addEventListener('click', () => {
+            showFeatured();
+        });
+    }
+
+    // initial load
+    renderFeaturedProjects();
+    // ensure full section hidden initially
+    fullSection.style.display = 'none';
+    
+    // smooth nav active update
+    const sections = document.querySelectorAll('div[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if(pageYOffset >= sectionTop) current = section.getAttribute('id');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('href').substring(1) === current) link.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

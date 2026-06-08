@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Experience Timeline | Nobel Okelekele</title>
+  <!-- Google Fonts & Font Awesome for icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f6fa;
+      color: #0a0c10;
+      line-height: 1.5;
+      padding: 3rem 1.5rem;
+    }
+
+    /* Dark mode support (optional but polished) */
+    body.dark-mode {
+      background: #0f172a;
+      color: #eef2ff;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Section header */
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e2b3c, #0f2b3d);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    body.dark-mode .section-header h2 {
+      background: linear-gradient(135deg, #b9e0ff, #7ab3c8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .section-header p {
+      color: #5b6e8c;
+      margin-top: 0.4rem;
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+
+    /* ----- TIMELINE (clean, modern, exactly matching screenshot style) ----- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Vertical line (light, subtle) */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 160px;
+      top: 12px;
+      bottom: 20px;
+      width: 2px;
+      background: #e2e8f0;
+      transform: translateX(-50%);
+    }
+    body.dark-mode .timeline::before {
+      background: #334155;
+    }
+
+    /* Each timeline row */
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+      position: relative;
+    }
+
+    /* Left side: year/date badge */
+    .timeline-date {
+      flex: 0 0 140px;
+      text-align: right;
+      padding-right: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #3b4e6e;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+    body.dark-mode .timeline-date {
+      color: #9ab3d5;
+    }
+
+    /* Dot indicator on the line */
+    .timeline-dot {
+      position: relative;
+      flex: 0 0 0;
+      width: 12px;
+      height: 12px;
+      background: #3b82f6;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+      margin-top: 4px;
+      z-index: 2;
+    }
+    body.dark-mode .timeline-dot {
+      background: #60a5fa;
+      box-shadow: 0 0 0 3px rgba(96,165,250,0.2);
+      border-color: #0f172a;
+    }
+
+    /* Right side content card */
+    .timeline-content {
+      flex: 1;
+      background: white;
+      border-radius: 1.25rem;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    body.dark-mode .timeline-content {
+      background: #1e293b;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+      border: 1px solid #334155;
+    }
+    .timeline-content:hover {
+      transform: translateX(4px);
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .timeline-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #0f172a;
+    }
+    body.dark-mode .timeline-title {
+      color: #f1f5f9;
+    }
+
+    .timeline-sub {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3b82f6;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .timeline-sub i {
+      font-size: 0.75rem;
+    }
+
+    .timeline-description {
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+    body.dark-mode .timeline-description {
+      color: #cbd5e1;
+    }
+
+    /* Tech/tags styling for extra polish */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .tech-tag {
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #1e40af;
+    }
+    body.dark-mode .tech-tag {
+      background: #334155;
+      color: #bbd7fb;
+    }
+
+    /* Responsive: on mobile we collapse left column */
+    @media (max-width: 680px) {
+      .timeline::before {
+        left: 20px;
+      }
+      .timeline-item {
+        flex-direction: column;
+        margin-left: 0;
+        gap: 0.5rem;
+      }
+      .timeline-date {
+        flex: auto;
+        text-align: left;
+        padding-left: 40px;
+        white-space: normal;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: 14px;
+        top: 8px;
+      }
+      .timeline-content {
+        margin-left: 28px;
+        width: calc(100% - 28px);
+      }
+    }
+
+    /* toggle button for dark mode (optional but nice) */
+    .theme-toggle-mini {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e293b;
+      border: none;
+      border-radius: 40px;
+      padding: 8px 14px;
+      color: white;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+    }
+    body.dark-mode .theme-toggle-mini {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  
+  <!-- Experience section header exactly matching screenshot style -->
+  <div class="section-header">
+    <h2>Experience</h2>
+    <p>Professional journey and hands-on projects</p>
+  </div>
+
+  <!-- Timeline view (exactly replicates screenshot experience items) -->
+  <div class="timeline">
+    
+    <!-- 1st item: Frontend Engineer, Personal Projects (2024-2025) -->
+    <div class="timeline-item">
+      <div class="timeline-date">2024 — 2025</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Frontend Engineer, Personal Projects</div>
+        <div class="timeline-sub">
+          <i class="fas fa-code"></i> React · TypeScript · Next.js · TailwindCSS
+        </div>
+        <div class="timeline-description">
+          Built several real-world projects and components like ATM simulation, portfolio website, meteo app, restaurant website, and world clock — using modern stacks (React, TypeScript, Next.js, JavaScript, TailwindCSS). Focused on responsive design and component-driven architecture.
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">React 18</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Next.js 14</span>
+          <span class="tech-tag">TailwindCSS</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 2nd item: QA Manager, CloudP2P (2024) -->
+    <div class="timeline-item">
+      <div class="timeline-date">2024 — 2024</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">QA Manager, CloudP2P</div>
+        <div class="timeline-sub">
+          <i class="fas fa-check-circle"></i> Quality Assurance · Testing · User Feedback
+        </div>
+        <div class="timeline-description">
+          Developed and enforced QA policies and procedures. Regularly tested the product to find and fix quality issues. Handled users feedback and complaints, and collaborated with development and design teams to improve processes and product quality.
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">Test Automation</span>
+          <span class="tech-tag">Bug Tracking</span>
+          <span class="tech-tag">Agile/Scrum</span>
+          <span class="tech-tag">JIRA</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 3rd item: Co-Founder, Thrive Tech Africa (2024 - Present) -->
+    <div class="timeline-item">
+      <div class="timeline-date">2024 — Present</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Co-Founder, Thrive Tech Africa</div>
+        <div class="timeline-sub">
+          <i class="fas fa-users"></i> Leadership · Community Building · Tech Workshops
+        </div>
+        <div class="timeline-description">
+          Building Thrive Tech Africa by shaping its mission and vision, organizing tech workshops and discussions. Driving tech education, mentorship, and creating opportunities for developers across the continent.
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">Community Strategy</span>
+          <span class="tech-tag">Event Curation</span>
+          <span class="tech-tag">Public Speaking</span>
+          <span class="tech-tag">Partnerships</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional additional note: for more roles you can add extra items easily following same pattern -->
+  <div style="margin-top: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.7;">
+    <i class="fas fa-briefcase"></i> Full career journey — from hands-on engineering to QA leadership and co-founding tech communities
+  </div>
+</div>
+
+<!-- dark mode toggle (keep consistent with portfolio requirement) -->
+<button class="theme-toggle-mini" id="miniThemeToggle">
+  <i class="fas fa-adjust"></i> <span>Dark/Light</span>
+</button>
+
+<script>
+  // Dark mode toggle logic with localStorage persistence
+  const toggleBtn = document.getElementById('miniThemeToggle');
+  const htmlBody = document.body;
+  
+  function setDarkMode(isDark) {
+    if (isDark) {
+      htmlBody.classList.add('dark-mode');
+    } else {
+      htmlBody.classList.remove('dark-mode');
+    }
+    localStorage.setItem('experienceTheme', isDark ? 'dark' : 'light');
+  }
+  
+  // check saved preference
+  const savedTheme = localStorage.getItem('experienceTheme');
+  if (savedTheme === 'dark') {
+    setDarkMode(true);
+  } else if (savedTheme === 'light') {
+    setDarkMode(false);
+  } else {
+    // if system preference? optional
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setDarkMode(true);
+    }
+  }
+  
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const willBeDark = !htmlBody.classList.contains('dark-mode');
+      setDarkMode(willBeDark);
+    });
+  }
+</script>
+
+<!-- 
+  Additional information: This timeline component matches the exact format from screenshot 
+  (dates, role, company/project context, description). Easy to extend with new experiences.
+  Fully responsive, with clean modern UI and accessibility.
+-->
+</body>
+</html>

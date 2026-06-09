@@ -232,100 +232,31 @@ main {
     transform: translateY(-6px);
     box-shadow: 0 24px 36px -16px rgba(0,0,0,0.15);
 }
-.screenshot-area {
-    background: #f1f5f9;
-    padding: 16px;
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #e2e8f0;
-}
 
-.mobile-screenshot-area{
-    display: flex;
-    flex-direction: row;
-}
-
-.mobile-screenshot-img{
-    flex: 1;
-    width: 60px;
-}
-
-.screenshot-img {
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    background: #0f172a;
-}
-.card-content {
-    padding: 20px;
-}
 .card-content h3 {
     font-size: 1.4rem;
     margin-bottom: 8px;
 }
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+}
 .tech-badge {
-    display: inline-block;
-    background: #eef2ff;
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    margin: 8px 4px 8px 0;
-}
-.desc {
-    color: #475569;
-    margin: 12px 0;
-    font-size: 0.9rem;
-}
-.card-links {
-    margin-top: 16px;
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.card-links a {
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-.view-all-link {
-    text-align: right;
-    margin: 20px 0 40px;
-}
-.experience, .education, .skills {
-    background: white;
-    border-radius: 28px;
-    padding: 32px;
-    margin: 40px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    border: 1px solid #e9eef3;
-}
-.timeline-item {
-    margin-bottom: 28px;
-}
-.job-title {
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-.company {
-    color: #2563eb;
-    font-weight: 500;
-}
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
-}
-.skill-pill {
     background: #f1f5f9;
-    padding: 6px 16px;
-    border-radius: 30px;
-    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: #0f172ad2;
 }
+body.dark .tech-badge {
+    background: #1e293b;
+    color: #cbd5e6;
+}
+
 footer {
     text-align: center;
     padding: 40px 0;
@@ -344,4 +275,65 @@ footer {
     .section-title {
         font-size: 1.7rem;
     }
+}
+
+p.desc{
+    color: #475569;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+    margin-top: 12px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 4px;
+    margin: 24px 0;
+}
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+}
+.feature-item i {
+    color: #3b82f6;
+    width: 24px;
+}
+
+.platform-icons {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #475569;
+}
+body.dark .platform-icons {
+    color: #94a3b8;
+}
+
+.section-subtitle {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 1.2rem 0 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.highlight-list {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.highlight-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }

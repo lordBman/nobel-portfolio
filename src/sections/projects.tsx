@@ -1,4 +1,4 @@
-import { MobileProjectView, WebProjectView } from "../components";
+import { MobileProjectItem, MobileProjectView, WebProjectView } from "../components";
 
  const projectsData = {
     websites: [
@@ -154,26 +154,10 @@ const Projects = () =>{
             <h2 class="timeline-header">
                 <i class="glyphs--rocket-duo" /> Projects
             </h2>
-            <div class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem" }}>
-                <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={"https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png"} alt="screenshot" />
-                <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
-                    <div style={{ flex: 1 }}>
-                        <h3>BWeather</h3>
-                        <h4><b>Platforms:</b> iOS / Android (tablet & phone)</h4>
-                        <h4><b>Tech Stack:</b> Flutter (Dart), BLoC (global state management), modular architecture, REST API (weather data)</h4>
-                        
-                        <div>
-                            <span style={{ "font-size": "16px" }}>About</span>
-                            <p class="desc">BWeather is a clean, feature‑rich weather application built for both mobile and tablet form factors. It provides real‑time weather information with a focus on intuitive UX and scalable code structure. The app demonstrates robust state handling, responsive layouts, and a polished dual‑theme experience.</p>
-                        </div>
-                        <div class="card-links">
-                            <a href={"#"} target="_blank"><i class="fab fa-android"></i> Android</a>
-                            <a href={"#"} target="_blank"><i class="fab fa-apple"></i> iOS</a>
-                            <a href={"#"} target="_blank"><i class="fas fa-mobile-alt"></i> HarmonyOS</a>
-                        </div>
-                    </div>
-                    <div><span class="tech-badge">Dart</span><span class="tech-badge">Flutter</span></div>
-                </div>
+            <div class="projects-grid">
+                <MobileProjectItem />
+                <MobileProjectItem />
+                <MobileProjectItem />
             </div>
         </div>
     );

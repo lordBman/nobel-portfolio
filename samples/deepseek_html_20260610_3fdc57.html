@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nobel Okelekele · Contact & Let's Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 60px 24px;
+        }
+
+        body.dark {
+            background: #0b1120;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Contact section main card */
+        .contact-wrapper {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.15);
+            border: 1px solid #eef2ff;
+        }
+        body.dark .contact-wrapper {
+            background: #0f1725;
+            border-color: #1e2a3a;
+        }
+
+        /* two column layout */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1;
+            background: linear-gradient(145deg, #f8fafc, #ffffff);
+            padding: 48px 40px;
+            border-right: 1px solid #e2e8f0;
+        }
+        body.dark .contact-info {
+            background: #0b1120;
+            border-right-color: #1e293b;
+        }
+        .contact-form {
+            flex: 1.2;
+            padding: 48px 40px;
+        }
+
+        /* Headings & text */
+        .section-eyebrow {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        .main-headline {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #2563eb, #1e3a8a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .contact-details {
+            margin: 40px 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 1rem;
+        }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #eef2ff;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #1e40af;
+        }
+        body.dark .contact-icon {
+            background: #1e293b;
+            color: #60a5fa;
+        }
+        .contact-item a {
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        body.dark .contact-item a {
+            color: #e2e8f0;
+        }
+        .contact-item a:hover {
+            color: #3b82f6;
+        }
+        .contact-label {
+            font-size: 0.75rem;
+            color: #5b6e8c;
+            margin-bottom: 4px;
+        }
+        .inline-detail {
+            font-weight: 600;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        body.dark input, body.dark textarea {
+            background: #111827;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+        .send-btn {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark .send-btn {
+            background: #2563eb;
+        }
+        .send-btn:hover {
+            background: #1e293b;
+            transform: scale(1.02);
+        }
+        .small-note {
+            font-size: 0.7rem;
+            margin-top: 16px;
+            color: #5b6e8c;
+            text-align: center;
+        }
+        hr {
+            margin: 20px 0;
+            border-color: #e2e8f0;
+        }
+        /* responsiveness */
+        @media (max-width: 850px) {
+            .contact-grid {
+                flex-direction: column;
+            }
+            .contact-info {
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .contact-info, .contact-form {
+                padding: 36px 28px;
+            }
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            border: none;
+            border-radius: 60px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        body.dark .theme-toggle {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .response-msg {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        body.dark .response-msg {
+            background: #14532d;
+            color: #bbf7d0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="contact-wrapper">
+        <div class="contact-grid">
+            <!-- LEFT: Get in touch (social & direct info) -->
+            <div class="contact-info">
+                <div class="section-eyebrow"><i class="fas fa-comment-dots"></i> Connect directly</div>
+                <div class="main-headline">
+                    Got A Project <span class="highlight">In Mind?</span>
+                </div>
+                <div style="font-weight: 700; font-size: 1.4rem; margin-bottom: 32px;">LET'S MAKE IT HAPPEN</div>
+                
+                <div class="contact-details">
+                    <!-- Twitter -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-twitter"></i></div>
+                        <div>
+                            <div class="contact-label">TWITTER</div>
+                            <a href="https://twitter.com/lordbman" target="_blank">@lordbman</a>
+                        </div>
+                    </div>
+                    <!-- LinkedIn (based on name inferred from resume) -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div>
+                            <div class="contact-label">LINKEDIN</div>
+                            <a href="#" target="_blank">Nobel Okelekele</a>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="contact-label">EMAIL</div>
+                            <a href="mailto:okelekelenobel@gmail.com">okelekelenobel@gmail.com</a>
+                        </div>
+                    </div>
+                    <!-- Website / Github Portfolio -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                        <div>
+                            <div class="contact-label">WEBSITE / GITHUB</div>
+                            <a href="https://github.com/lordbman" target="_blank">github.com/lordbman</a>
+                        </div>
+                    </div>
+                    <!-- Phone (optional) -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <div class="contact-label">PHONE</div>
+                            <span class="inline-detail">+234 (0)7087952034</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.8rem; margin-top: 12px;">
+                    <i class="fas fa-map-pin"></i> Lagos, Nigeria · Available for remote / worldwide collaboration
+                </div>
+            </div>
+
+            <!-- RIGHT: Contact Form Section -->
+            <div class="contact-form">
+                <div class="section-eyebrow"><i class="fas fa-paper-plane"></i> Send me an email</div>
+                <div class="main-headline" style="font-size: 1.8rem;">I'M VERY RESPONSIVE <br>TO MESSAGES</div>
+                
+                <form id="contactForm" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Oluwaseun Adebayo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Project inquiry / Collaboration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell me about your idea, timeline, or any specific requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn"><i class="fas fa-location-arrow"></i> Send Message</button>
+                    <div class="small-note"><i class="fas fa-lock"></i> I'll get back within 24 hours – guaranteed.</div>
+                    <div id="formFeedback" style="margin-top: 16px;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer subtle note -->
+    <div style="text-align: center; margin-top: 32px; font-size: 0.75rem; opacity: 0.7;">
+        <i class="fas fa-code-branch"></i> Available for freelance, full‑time contracts & technical consulting
+    </div>
+</div>
+
+<button class="theme-toggle" id="themeToggleBtn">
+    <i class="fas fa-moon"></i> <span>Dark / Light</span>
+</button>
+
+<script>
+    // Dark mode toggle logic
+    const themeBtn = document.getElementById('themeToggleBtn');
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('contactTheme', isDark ? 'dark' : 'light');
+        if (themeBtn) {
+            const icon = themeBtn.querySelector('i');
+            const span = themeBtn.querySelector('span');
+            if (isDark) {
+                icon.className = 'fas fa-sun';
+                span.innerText = ' Light Mode';
+            } else {
+                icon.className = 'fas fa-moon';
+                span.innerText = ' Dark Mode';
+            }
+        }
+    }
+    if (themeBtn) {
+        themeBtn.addEventListener('click', toggleDarkMode);
+        const saved = localStorage.getItem('contactTheme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark');
+            const icon = themeBtn.querySelector('i');
+            const span = themeBtn.querySelector('span');
+            if (icon && span) {
+                icon.className = 'fas fa-sun';
+                span.innerText = ' Light Mode';
+            }
+        } else {
+            if (themeBtn.querySelector('i')) {
+                themeBtn.querySelector('i').className = 'fas fa-moon';
+                if (themeBtn.querySelector('span')) themeBtn.querySelector('span').innerText = ' Dark Mode';
+            }
+        }
+    }
+
+    // Simple form handling simulation (no actual backend, but shows feedback)
+    const contactForm = document.getElementById('contactForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !subject || !message) {
+                feedbackDiv.innerHTML = '<div class="response-msg" style="background:#fee2e2; color:#b91c1c;">⚠️ Please fill all fields before sending.</div>';
+                setTimeout(() => feedbackDiv.innerHTML = '', 3000);
+                return;
+            }
+            // Mock success (just simulate)
+            feedbackDiv.innerHTML = '<div class="response-msg"><i class="fas fa-check-circle"></i> Thanks! Your message has been sent. I will reach out to you soon.</div>';
+            contactForm.reset();
+            setTimeout(() => feedbackDiv.innerHTML = '', 5000);
+        });
+    }
+</script>
+</body>
+</html>

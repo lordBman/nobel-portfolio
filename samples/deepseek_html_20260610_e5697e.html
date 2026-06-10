@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nobel Okelekele · Core Competencies & Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 60px 24px;
+        }
+
+        body.dark {
+            background: #0b1120;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Section header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-header h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0f2b3d, #2563eb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+        body.dark .section-header h2 {
+            background: linear-gradient(135deg, #cbd5e6, #60a5fa);
+            background-clip: text;
+        }
+        .section-header p {
+            color: #475569;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        body.dark .section-header p {
+            color: #94a3b8;
+        }
+
+        /* Services grid – modern card style (matching reference but tailored to CV) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 1.75rem;
+            padding: 2rem 1.8rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eef2ff;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark .service-card {
+            background: #111827;
+            border-color: #1f2a3e;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #cbd5e1;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        body.dark .service-card:hover {
+            border-color: #3b82f6;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: #eef2ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.8rem;
+            color: #2563eb;
+            transition: 0.2s;
+        }
+        body.dark .service-icon {
+            background: #1e2a47;
+            color: #60a5fa;
+        }
+        .service-card h3 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .service-card p {
+            color: #334155;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        body.dark .service-card p {
+            color: #cbd5e6;
+        }
+
+        /* small skill tags inside cards (optional) */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .skill-tag {
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1e40af;
+        }
+        body.dark .skill-tag {
+            background: #1e293b;
+            color: #93c5fd;
+        }
+
+        /* footnote / CTA */
+        .contact-note {
+            text-align: center;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+        }
+        body.dark .contact-note {
+            border-top-color: #1e293b;
+        }
+        .contact-note a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f172a;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        body.dark .contact-note a {
+            background: #2563eb;
+        }
+        .contact-note a:hover {
+            background: #1e293b;
+            transform: scale(1.02);
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            border: none;
+            border-radius: 60px;
+            padding: 10px 20px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        body.dark .theme-toggle {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        @media (max-width: 750px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            body {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="section-header">
+        <h2><i class="fas fa-code"></i> Core Competencies & Services</h2>
+        <p>Full-stack expertise · Cross-platform mobile · Cloud solutions · modern web & app craftsmanship</p>
+    </div>
+
+    <div class="services-grid">
+        <!-- 1. Cross-Platform Mobile Development (Flutter + Android Native) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fab fa-flutter"></i></div>
+            <h3>Cross-Platform Mobile</h3>
+            <p>Native-quality apps for iOS, Android, and HarmonyOS using Flutter (Dart) and Android Native (Jetpack Compose, XML). I build responsive, fluid interfaces that feel at home on every device — from phones to tablets.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">Flutter</span>
+                <span class="skill-tag">Android Native</span>
+                <span class="skill-tag">Jetpack Compose</span>
+                <span class="skill-tag">Tablet UI</span>
+            </div>
+        </div>
+
+        <!-- 2. Full-Stack Web & API Development (React, NodeJS, Express) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-globe"></i></div>
+            <h3>Full-Stack Web Apps</h3>
+            <p>End-to-end web solutions: dynamic frontends with React, Bootstrap, and responsive design, paired with robust backends using NodeJS, Express, and MySQL/Prisma. I also design RESTful APIs and integrate third-party services.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">NodeJS / Express</span>
+                <span class="skill-tag">Prisma ORM</span>
+                <span class="skill-tag">REST API</span>
+            </div>
+        </div>
+
+        <!-- 3. Cloud & Azure DevOps (App Service, CI/CD) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fab fa-microsoft"></i></div>
+            <h3>Azure Cloud & DevOps</h3>
+            <p>Deploy and manage scalable applications on Azure (Web Apps, Function Apps, Logic Apps, Containers). I design CI/CD pipelines with Git + Azure DevOps, troubleshoot platform issues, and integrate Azure Storage, SQL, and other resources.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">Azure App Service</span>
+                <span class="skill-tag">CI/CD Pipelines</span>
+                <span class="skill-tag">Function Apps</span>
+                <span class="skill-tag">DevOps</span>
+            </div>
+        </div>
+
+        <!-- 4. UI/UX Implementation & Design (Figma to Code) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-paintbrush-fine"></i></div>
+            <h3>UI/UX Implementation</h3>
+            <p>Pixel-perfect conversion of Figma / Adobe XD designs into responsive, accessible frontend code using HTML5, CSS3, Tailwind, Bootstrap, React and Next.js. I also prototype designs in Figma to bridge the gap between vision and reality.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">Figma to Code</span>
+                <span class="skill-tag">Tailwind / Bootstrap</span>
+                <span class="skill-tag">Responsive Design</span>
+                <span class="skill-tag">Next.js</span>
+            </div>
+        </div>
+
+        <!-- 5. Backend & Database Integration (Firebase, Supabase, SQL) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-database"></i></div>
+            <h3>Backend & Database Integration</h3>
+            <p>Seamless connection between frontend and backend systems using Firebase, Supabase, or custom NodeJS APIs. I manage relational (MySQL) and NoSQL databases with migrations using Prisma, and ensure real-time sync where needed.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">Firebase / Supabase</span>
+                <span class="skill-tag">MySQL / Prisma</span>
+                <span class="skill-tag">REST / GraphQL</span>
+                <span class="skill-tag">Real-time Data</span>
+            </div>
+        </div>
+
+        <!-- 6. Performance Optimization & Scalable Architecture -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Performance & Scalability</h3>
+            <p>Optimize asset delivery, code splitting, and follow modern best practices (lazy loading, caching, efficient state management with BLoC/Redux). I build modular, test-driven applications that scale from startup to enterprise.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">TDD</span>
+                <span class="skill-tag">Modular Design</span>
+                <span class="skill-tag">BLoC / Redux</span>
+                <span class="skill-tag">Web Vitals</span>
+            </div>
+        </div>
+
+        <!-- 7. Game Development & Embedded Systems (Bonus from CV) -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-gamepad"></i></div>
+            <h3>Game Dev & Embedded Hobby</h3>
+            <p>2D game development using LibGDX (Java) and embedded systems programming (C++ / Assembly) for robotics. Although a hobby, this sharpens my low-level logic and performance-oriented mindset, bringing creativity to software solutions.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">LibGDX</span>
+                <span class="skill-tag">C++ / Assembly</span>
+                <span class="skill-tag">Robotics</span>
+                <span class="skill-tag">Game Mechanics</span>
+            </div>
+        </div>
+
+        <!-- 8. Continuous Growth & Modern Tech Stack -->
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-seedling"></i></div>
+            <h3>Continuous Growth</h3>
+            <p>I stay on top of emerging trends in frontend, mobile, and cloud ecosystems. From new Flutter features to Azure innovations, I bring fresh, efficient solutions to every project — always learning, always evolving.</p>
+            <div class="skill-tags">
+                <span class="skill-tag">React 19</span>
+                <span class="skill-tag">Flutter 3.x</span>
+                <span class="skill-tag">Next.js App Router</span>
+                <span class="skill-tag">AI tooling</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-note">
+        <a href="mailto:okelekelenobel@gmail.com"><i class="fas fa-paper-plane"></i> Let's build something exceptional →</a>
+        <p style="margin-top: 20px; font-size: 0.8rem;">Based on 4+ years of professional experience | BSc Electrical/Electronics Engineering</p>
+    </div>
+</div>
+
+<button class="theme-toggle" id="themeToggleBtn">
+    <i class="fas fa-moon"></i> <span>Dark / Light</span>
+</button>
+
+<script>
+    // Dark mode toggle with localStorage
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    function toggleDark() {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        localStorage.setItem('servicesTheme', isDark ? 'dark' : 'light');
+        if (toggleBtn) {
+            const icon = toggleBtn.querySelector('i');
+            const span = toggleBtn.querySelector('span');
+            if (isDark) {
+                icon.className = 'fas fa-sun';
+                span.innerText = ' Light Mode';
+            } else {
+                icon.className = 'fas fa-moon';
+                span.innerText = ' Dark Mode';
+            }
+        }
+    }
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleDark);
+        const saved = localStorage.getItem('servicesTheme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark');
+            const icon = toggleBtn.querySelector('i');
+            const span = toggleBtn.querySelector('span');
+            if (icon && span) {
+                icon.className = 'fas fa-sun';
+                span.innerText = ' Light Mode';
+            }
+        } else {
+            if (toggleBtn.querySelector('i')) {
+                toggleBtn.querySelector('i').className = 'fas fa-moon';
+                if (toggleBtn.querySelector('span')) toggleBtn.querySelector('span').innerText = ' Dark Mode';
+            }
+        }
+    }
+</script>
+</body>
+</html>

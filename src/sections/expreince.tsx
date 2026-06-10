@@ -2,12 +2,12 @@ import "../css/experience.css";
 
 const Experience = () =>{
     return (
-        <div class="container" id="experience" style={{ "max-width": "1300px", margin: "0 auto", "margin-top": "50px" }}>
-            <h2 class="timeline-header">
+        <section class="container container-padding" id="experience">
+            <h2 class="section-header">
                 <i class="glyphs--laptop-code-duo" /> Experience
             </h2>
 
-            <div class="timeline">
+            <div class="timeline" style={{ "max-width": "1000px", margin: "0 auto" }}>
                 <div class="timeline-item">
                     <div class="timeline-left">
                         <span class="year-badge">2017 — 2019</span>
@@ -117,7 +117,7 @@ const Experience = () =>{
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

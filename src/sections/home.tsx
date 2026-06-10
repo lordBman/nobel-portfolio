@@ -3,7 +3,7 @@ import nobelImage from '../assets/nobel.jpg';
 
 const Home = () => {
     return (
-        <div class="container" id="about" style={{ display: 'flex', 'align-items': 'center', 'justify-content': 'center' }}>
+        <section class="container" id="about" style={{ display: 'flex', 'align-items': 'center', 'justify-content': 'center' }}>
             <div class="hero">
                 <div class="hero-avatar">
                     <div class="avatar-placeholder">
@@ -30,7 +30,7 @@ const Home = () => {
                     </div>
                 </div>    
             </div>
-        </div>
+        </section>
     );
 }
 

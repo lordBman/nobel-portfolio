@@ -1,6 +1,6 @@
 const Project = () => {
     return (
-        <div class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+        <section class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
             <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={"https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png"} alt="screenshot" />
             <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
                 <div style={{ flex: 1 }}>
@@ -37,7 +37,7 @@ const Project = () => {
                     <a href="#" class="btn btn-outline"><i class="fab fa-app-store-ios"></i> App Store</a>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

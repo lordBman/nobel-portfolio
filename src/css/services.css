@@ -1,0 +1,72 @@
+/* Services grid – modern card style (matching reference but tailored to CV) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(2px);
+    
+    border-radius: 1.75rem;
+    padding: 2rem 1.8rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eef2ff;
+    position: relative;
+    overflow: hidden;
+}
+body.dark .service-card {
+    background: rgba(17, 24, 39, 0.2);
+    backdrop-filter: blur(2px);
+    border-color: #1f2a3e;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+}
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: #cbd5e1;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+}
+body.dark .service-card:hover {
+    border-color: #3b82f6;
+}
+
+.service-icon {
+    width: 56px;
+    height: 56px;
+    background: #eef2ff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 1.8rem;
+    color: #2563eb;
+    transition: 0.2s;
+}
+body.dark .service-icon {
+    background: #1e2a47;
+    color: #60a5fa;
+}
+.service-card h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+.service-card p {
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+}
+body.dark .service-card p {
+    color: #cbd5e6;
+}
+
+@media (max-width: 750px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}

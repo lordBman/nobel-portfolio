@@ -5,7 +5,7 @@ namespace Constants {
     export const NEAR_LIMIT = -40.0;
     export const FAR_LIMIT = 40.0;
     export const CUBOID_COUNT = 180;
-    export const bgColor = 0xffffff;
+    export const bgColor = 0x0b1120;
     export const MIN_SPEED = 3;
     export const MAX_SPEED = 5;
 }

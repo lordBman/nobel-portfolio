@@ -228,8 +228,8 @@ const connect: WebProject = {
 
 const Projects = () =>{
     return (
-        <div class="container" id="experience" style={{ "max-width": "1460px", margin: "0 auto",  "margin-top": "50px" }}>
-            <h2 class="timeline-header">
+        <section class="container container-padding" id="projects">
+            <h2 class="section-header">
                 <i class="glyphs--rocket-duo" /> Projects
             </h2>
             <div class="projects-grid">
@@ -239,7 +239,7 @@ const Projects = () =>{
                 <MobileProjectItem project={blinkArkUI} />
                 <WebProjectItem project={connect} />
             </div>
-        </div>
+        </section>
     );
 }
 export default Projects

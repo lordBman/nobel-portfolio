@@ -5,7 +5,8 @@ namespace Constants {
     export const NEAR_LIMIT = -40.0;
     export const FAR_LIMIT = 40.0;
     export const CUBOID_COUNT = 180;
-    export const bgColor = 0x0b1120;
+    export const lightBgColor = 0xffffff;
+    export const darkBgColor = 0x0b1120;
     export const MIN_SPEED = 3;
     export const MAX_SPEED = 5;
 }
@@ -83,20 +84,14 @@ class Graphics {
     private dirLightA: THREE.DirectionalLight
     private dirLightB: THREE.DirectionalLight
     private cuboids: THREE.Mesh[]
-    private boxMaterial: THREE.MeshStandardMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 0.1,
-        metalness: 0.02,
-        emissive: 0xffffff,
-        emissiveIntensity: 0.2
-    });
+    private boxMaterial: THREE.MeshStandardMaterial
     private animationId?: number;
     private containerRef: HTMLDivElement
     private active: boolean = true
 
     renderer: THREE.WebGLRenderer
 
-    constructor(containerRef: HTMLDivElement) {
+    constructor(containerRef: HTMLDivElement, isDark: boolean = false) {
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -105,8 +100,8 @@ class Graphics {
         this.containerRef.appendChild(this.renderer.domElement);
 
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(Constants.bgColor);
-        this.scene.fog = new THREE.FogExp2(Constants.bgColor, 0.045); // Fog masks spawning/disappearing
+        this.scene.background = new THREE.Color(isDark ? Constants.darkBgColor : Constants.lightBgColor);
+        this.scene.fog = new THREE.FogExp2(isDark ? Constants.darkBgColor : Constants.lightBgColor, 0.045); // Fog masks spawning/disappearing
 
         this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.set(0, 0, 20);
@@ -119,6 +114,14 @@ class Graphics {
         this.dirLightB = new THREE.DirectionalLight(0xffffff, 1.6);
         this.dirLightB.position.set(-5, -6, 4);
         this.scene.add(this.dirLightB);
+
+        this.boxMaterial = new THREE.MeshStandardMaterial({
+            color: isDark ? 0xa0a0a0 : 0xffffff,
+            roughness: 0.1,
+            metalness: 0.02,
+            emissive: isDark ? 0xf0f0f0 : 0xffffff,
+            emissiveIntensity: 0.2
+        });
 
         this.cuboids = initializeCuboids(this.scene, this.boxMaterial);
 

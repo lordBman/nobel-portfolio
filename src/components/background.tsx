@@ -1,12 +1,12 @@
-import { onCleanup, onMount } from "solid-js";
+import { onCleanup, onMount, createEffect } from "solid-js";
 import Graphics from "../utils/graphics";
 
-const Background = () => {
-    let containerRef: HTMLDivElement | undefined;
+const Background = (props: { isDark: boolean }) => {
+    let containerRef: HTMLDivElement | undefined;    
 
-    onMount(() => {
+    createEffect(() => {
         if(containerRef) {
-            const graphics = new Graphics(containerRef);
+            const graphics = new Graphics(containerRef, props.isDark);
             graphics.start();
 
             onCleanup(() => {

@@ -1,7 +1,7 @@
 import { SolidTyper } from "solid-typer";
 import nobelImage from '../assets/nobel.jpg';
 
-const Home = () => {
+const About = () => {
     return (
         <section class="container" id="about" style={{ display: 'flex', 'align-items': 'center', 'justify-content': 'center' }}>
             <div class="hero">
@@ -13,7 +13,7 @@ const Home = () => {
                 <div class="hero-content">
                     <span class="hero-badge"><i class="fas fa-code"></i> Mobile App Dev</span>
                     <div>
-                        <span style={{ "font-size": "1.0rem", "font-weight": "400", "color": "#334155" }}>Hi, my name is</span>
+                        <span style={{ "font-size": "1.0rem", "font-weight": "400" }}>Hi, my name is</span>
                         <h2>Nobel Bobby Okelekele</h2>
                         <SolidTyper style={{ "font-size": "1.6rem", "font-family": "monospace", "font-weight": "lighter" }} text={[ "I am a Software Engineer", "I am a Mobile App Developer", "Building cross-platform excellence.", "Crafting Digital Experiences with Code"]} typingSpeed={80} backspaceSpeed={30} loop={true} cursor={true} />
                     </div>
@@ -34,4 +34,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default About;

@@ -21,7 +21,6 @@ body.dark .service-card {
     background: rgba(17, 24, 39, 0.2);
     backdrop-filter: blur(2px);
     border-color: #1f2a3e;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
 }
 .service-card:hover {
     transform: translateY(-6px);

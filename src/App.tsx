@@ -1,5 +1,5 @@
 import { Background, Header } from "./components"
-import { Experience, Home, Projects, Services } from "./sections"
+import { Contact, Experience, About, Projects, Services } from "./sections"
 
 import './css/icons.css'
 import { createSignal, onMount } from "solid-js"
@@ -26,13 +26,14 @@ const App = () =>{
 
     return (
         <div class="app-container">
-            <Background />
+            <Background isDark={isDark()} />
             <Header />
             <main>
-                <Home />
+                <About />
                 <Experience />
                 <Services />
                 <Projects />
+                <Contact />
             </main>
             <button class="theme-toggle" id="themeToggleBtn" onClick={toggleDark}>
                 <i class={ isDark() ? "fas fa-sun" : "fas fa-moon" }></i> <span>{ isDark() ? "Light Mode" : "Dark Mode" }</span>

@@ -21,7 +21,7 @@ const About = () => {
                     <div class="contact-info">
                         <div class="contact-chip"><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</div>
                         <div class="contact-chip"><i class="fas fa-phone-alt"></i> +234 (0)7087952034</div>
-                        <div class="contact-chip"><i class="fas fa-envelope"></i> okelelekennel@gmail.com</div>
+                        <div class="contact-chip"><i class="fas fa-envelope"></i> okelelekenobel@gmail.com</div>
                         <div class="contact-chip"><i class="fab fa-github"></i> github.com/lordbman</div>
                     </div>
                     <div>

@@ -1,4 +1,8 @@
+import { useParams } from "@solidjs/router";
+
 const Project = () => {
+    const params = useParams();
+    
     return (
         <section class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
             <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={"https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png"} alt="screenshot" />

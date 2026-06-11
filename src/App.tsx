@@ -1,8 +1,11 @@
 import { Background, Header } from "./components"
-import { Contact, Experience, About, Projects, Services } from "./sections"
 
 import './css/icons.css'
 import { createSignal, onMount } from "solid-js"
+import { Route, Router } from "@solidjs/router"
+import Home from "./pages/home"
+import AllProjects from "./pages/all-project"
+import Project from "./pages/project"
 
 const appThemeKey = 'appTheme'
 const App = () =>{
@@ -28,13 +31,11 @@ const App = () =>{
         <div class="app-container">
             <Background isDark={isDark()} />
             <Header />
-            <main>
-                <About />
-                <Experience />
-                <Services />
-                <Projects />
-                <Contact />
-            </main>
+            <Router>
+                <Route path="/" component={Home} />
+                <Route path="/projects" component={AllProjects} />
+                <Route path="/projects/:id" component={Project} />
+            </Router>
             <button class="theme-toggle" id="themeToggleBtn" onClick={toggleDark}>
                 <i class={ isDark() ? "fas fa-sun" : "fas fa-moon" }></i> <span>{ isDark() ? "Light Mode" : "Dark Mode" }</span>
             </button>

@@ -1,4 +1,4 @@
-import { onCleanup, onMount, createEffect } from "solid-js";
+import { onCleanup, createEffect } from "solid-js";
 import Graphics from "../utils/graphics";
 
 const Background = (props: { isDark: boolean }) => {

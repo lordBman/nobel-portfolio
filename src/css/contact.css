@@ -1,0 +1,212 @@
+/* Contact section main card */
+.contact-wrapper {
+    background: rgba(255,255,255,0.2);
+    border-radius: 2rem;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 25px 45px -12px rgba(0,0,0,0.15);
+    border: 1px solid #eef2ff;
+}
+body.dark .contact-wrapper {
+    background: rgba(30, 41, 59, 0.2);
+    border-color: #1e2a3a;
+}
+
+/* two column layout */
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+.contact-info-section {
+    flex: 1;
+    background: linear-gradient(145deg, #f8fafc, #ffffff);
+    padding: 48px 40px;
+    border-right: 1px solid #e2e8f0;
+}
+body.dark .contact-info-section {
+    background: #0b1120;
+    border-right-color: #1e293b;
+}
+.contact-form {
+    flex: 1.2;
+    padding: 48px 40px;
+}
+
+/* Headings & text */
+.section-eyebrow {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 20px;
+}
+.main-headline {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+.highlight {
+    background: linear-gradient(120deg, #2563eb, #1e3a8a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.contact-details {
+    margin: 40px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1rem;
+}
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    background: #eef2ff;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #1e40af;
+}
+body.dark .contact-icon {
+    background: #1e293b;
+    color: #60a5fa;
+}
+.contact-item a {
+    text-decoration: none;
+    color: #0f172a;
+    font-weight: 500;
+    transition: 0.2s;
+}
+body.dark .contact-item a {
+    color: #e2e8f0;
+}
+.contact-item a:hover {
+    color: #3b82f6;
+}
+.contact-label {
+    font-size: 0.75rem;
+    color: #5b6e8c;
+    margin-bottom: 4px;
+}
+.inline-detail {
+    font-weight: 600;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 24px;
+}
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+input, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 20px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+body.dark input, body.dark textarea {
+    background: #111827;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+.send-btn {
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 60px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+body.dark .send-btn {
+    background: #2563eb;
+}
+.send-btn:hover {
+    background: #1e293b;
+    transform: scale(1.02);
+}
+.small-note {
+    font-size: 0.7rem;
+    margin-top: 16px;
+    color: #5b6e8c;
+    text-align: center;
+}
+hr {
+    margin: 20px 0;
+    border-color: #e2e8f0;
+}
+/* responsiveness */
+@media (max-width: 850px) {
+    .contact-grid {
+        flex-direction: column;
+    }
+    .contact-info {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .contact-info, .contact-form {
+        padding: 36px 28px;
+    }
+}
+.theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1e293b;
+    border: none;
+    border-radius: 60px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+body.dark .theme-toggle {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+.response-msg {
+    background: #dcfce7;
+    color: #166534;
+    padding: 12px;
+    border-radius: 20px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+body.dark .response-msg {
+    background: #14532d;
+    color: #bbf7d0;
+}

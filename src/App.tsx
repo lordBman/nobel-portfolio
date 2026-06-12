@@ -31,11 +31,13 @@ const App = () =>{
         <div class="app-container">
             <Background isDark={isDark()} />
             <Header />
-            <Router>
-                <Route path="/" component={Home} />
-                <Route path="/projects" component={AllProjects} />
-                <Route path="/projects/:id" component={Project} />
-            </Router>
+            <main>
+                <Router>
+                    <Route path="/" component={Home} />
+                    <Route path="/projects" component={AllProjects} />
+                    <Route path="/projects/:id" component={Project} />
+                </Router>
+            </main>
             <button class="theme-toggle" id="themeToggleBtn" onClick={toggleDark}>
                 <i class={ isDark() ? "fas fa-sun" : "fas fa-moon" }></i> <span>{ isDark() ? "Light Mode" : "Dark Mode" }</span>
             </button>

@@ -107,7 +107,7 @@ body.dark .timeline-content {
 
 .timeline-content:hover {
     border-color: #cbd5e1;
-    transform: translateX(4px);
+    transform: translateX(2px);
 }
 
 body.dark .timeline-content:hover {

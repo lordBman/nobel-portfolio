@@ -4,13 +4,13 @@ import Contact from "../sections/contact";
 
 const Home = () =>{
     return (
-        <main>
+        <>
             <About />
             <Experience />
             <Services />
             <Projects />
             <Contact />
-        </main>
+        </>
     );
 }
 

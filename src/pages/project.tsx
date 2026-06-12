@@ -1,10 +1,25 @@
-import { useParams } from "@solidjs/router";
+import { createAsync, useParams } from "@solidjs/router";
+import { getProject, type MobileProject, type WebProject } from "../data";
+
+interface Data{ project?: MobileProject | WebProject, loading: boolean }
+
+const loader = async(id: string): Promise<Data> =>{
+    try{
+        const result = await getProject(id);
+        
+        return { project: result, loading: false }
+    }catch(error){
+        console.error(error)
+    }
+    return { loading: false }
+}
 
 const Project = () => {
-    const params = useParams();
+    const { id } = useParams();
+    const data = createAsync<Data>(() => loader(id!), { initialValue: { loading: true } });
     
     return (
-        <section class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+        <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
             <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={"https://raw.githubusercontent.com/lordBman/bweatherflutter/refs/heads/main/Screenshot%202024-06-01%20090147.png"} alt="screenshot" />
             <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
                 <div style={{ flex: 1 }}>

@@ -14,16 +14,19 @@ const scrollToSection = (id: string, offset: number = 80) =>{
     }
 }
 
-const HeaderItem = (props: { id: string, label: string, active: string, icon: string }) =>{
+const HeaderItem = (props: { id: string, label: string, active: string, icon: string, click: (id: string) => void }) =>{
      // Handles clicking a navigation link
-    const handleNavClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = (event) => {
-        event.preventDefault();
-        scrollToSection(props.id, 0);
+    const handleNavClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = () => {
+        /*event.preventDefault();
+        if( document.location.pathname !== "/"){
+            document.location = "/"
+        }
+        scrollToSection(props.id, 0);*/
     };
 
     return (
         <li>
-            <a href={`#${props.id}`} class={ props.active === props.id ? "active" : "" } onClick={handleNavClick}>
+            <a href={`/#${props.id}`} class={ props.active === props.id ? "active" : "" } onClick={handleNavClick}>
                 <i class={ props.icon } style={{ "font-size": "2rem" }} /> {props.label}
             </a>
         </li>
@@ -76,6 +79,7 @@ const Header = () =>{
             setActiveSection(activeId);
         }
         checkInitialActive();
+        alert(document.location.pathname)
 
         // Cleanup observer when component unmounts
         onCleanup(() => {
@@ -88,13 +92,13 @@ const Header = () =>{
             <div class="nav-bar">
                 <div class="logo"><h1><i class="fas fa-code"></i> Nobel</h1></div>
                 <ul class="nav-links">
-                    <HeaderItem id="about" label="About" active={activeSection()} icon="glyphs--user-duo" />
-                    <HeaderItem id="experience" label="Experience" active={activeSection()} icon="glyphs--laptop-code-duo" />
-                    <HeaderItem id="services" label="Services" active={activeSection()} icon="glyphs--layer-group-duo" />
-                    <HeaderItem id="projects" label="Projects" active={activeSection()} icon="glyphs--rocket-duo" />
+                    <HeaderItem id="about" label="About" active={activeSection()} icon="glyphs--user-duo" click={setActiveSection}/>
+                    <HeaderItem id="experience" label="Experience" active={activeSection()} icon="glyphs--laptop-code-duo" click={setActiveSection} />
+                    <HeaderItem id="services" label="Services" active={activeSection()} icon="glyphs--layer-group-duo" click={setActiveSection}/>
+                    <HeaderItem id="projects" label="Projects" active={activeSection()} icon="glyphs--rocket-duo" click={setActiveSection}/>
                 </ul>
                 <ul class="nav-links">
-                    <HeaderItem id="contact" label="Contact" active={activeSection()} icon="glyphs--mailbox-duo" />
+                    <HeaderItem id="contact" label="Contact" active={activeSection()} icon="glyphs--mailbox-duo" click={setActiveSection}/>
                 </ul>
             </div>
         </header>

@@ -1,0 +1,52 @@
+$light-primary: #3b82f6;
+$dark-primary: #60a5fa;
+
+$light-on-surface: #0f172a;
+$dark-on-surface: #e2e8f0;
+
+@mixin light-on-surface-bg{
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@mixin dark-on-surface-bg{
+    background: rgba(30, 41, 59, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@mixin border($color, $thickness){
+    border-style: solid; 
+    border-color: $color;
+    border-width: $thickness;
+}
+  
+@mixin border-primary($thickness){
+    @include border( $primary, $thickness);
+}
+  
+@mixin btn($color, $hoverColor, $textColor, $textHover){
+    @include border( $color, 2px);
+    background-color: $color;
+	color: $textColor;
+	&:hover{
+        @include border( $hoverColor, 2px);
+        background-color: $hoverColor;
+        color: $textHover;
+	}
+}
+  
+@mixin outline($color){
+    background-color: transparent;
+	@include border( $color, 2px);
+    color: $color;
+}
+  
+@mixin btn-outline($color){
+	@include outline($color);
+	&:hover{
+	  background-color: $color;
+	  color: white;
+	}
+}

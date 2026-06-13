@@ -79,7 +79,6 @@ const Header = () =>{
             setActiveSection(activeId);
         }
         checkInitialActive();
-        alert(document.location.pathname)
 
         // Cleanup observer when component unmounts
         onCleanup(() => {

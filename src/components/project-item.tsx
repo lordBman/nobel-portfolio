@@ -8,7 +8,7 @@ const MobileProjectItem = (props: { project: MobileProject }) =>{
     }
 
     return (
-        <div class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "row", gap: "2rem", "align-items": "start", cursor: "pointer" }} onClick={clicked}>
+        <div class="mobile-project-content" onClick={clicked}>
             <img style={{ width: "200px", "border-radius": "20px", border: "solid 2px #e2e8f0" }} src={props.project.image} alt="screenshot" />
             <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
                 <div style={{ flex: 1 }}>
@@ -59,7 +59,7 @@ const WebProjectItem = (props: { project: WebProject }) =>{
     }
 
     return (
-        <div class="timeline-content" style={{ display: "flex", width: "100%", "flex-direction": "column", gap: "1.4rem", "align-items": "stretch", cursor: "pointer" }} onClick={clicked}>
+        <div class="web-project-content" onClick={clicked}>
             <img style={{ "border-radius": "8px", width: "100%", border: "solid 2px #e2e8f0" }} src={props.project.image} alt="screenshot" />
             <div class="card-content" style={{ display: "flex", "flex-direction": "column", width: "100%" }}>
                 <div style={{ flex: 1 }}>

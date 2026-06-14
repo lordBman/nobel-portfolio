@@ -1,4 +1,4 @@
-import "../css/contact.css"
+import "../css/contact.scss"
 
 const Contact = () =>{
     return (
@@ -45,7 +45,7 @@ const Contact = () =>{
                                 </div>
                             </div>
                         </div>
-                        <div style="font-size: 1.2rem; margin-top: 40px; letter-spacing: 1.2px; font-weight: 300;">
+                        <div style="font-size: 1rem; margin-top: 40px; letter-spacing: 1.2px; font-weight: 300;">
                             <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria · Available for remote / worldwide collaboration
                         </div>
                     </div>

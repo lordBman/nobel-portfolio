@@ -1,0 +1,69 @@
+@use "common" as common;
+
+.mobile-project-content {
+    @include common.content();
+
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 2rem; 
+    align-items: start;
+    cursor: pointer;
+}
+
+.web-project-content {
+    @include common.content();
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1.4rem; 
+    align-items: stretch;
+    cursor: pointer;
+}
+
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    gap: 1rem;
+}
+.filter-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+.filter-input-container i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5b6e8c;
+    font-size: 1.1rem;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+.filter-input {
+    @include common.outline(rgba(0, 0, 0, 0.1), 1.2px);
+    @include common.border-shadow();
+
+    width: 100%;
+    padding: 14px 18px 14px 48px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    border-radius: 60px;
+    transition: all 0.2s;
+    color: var(--color-on-surface);
+    outline: none;
+    font-weight: 500;
+
+    &:focus {
+        border-color: var(--color-primary);
+        @include common.border-shadow()
+    }
+
+    &:focus + i {
+        color: var(--color-primary);
+    }
+}

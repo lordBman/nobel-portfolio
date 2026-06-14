@@ -12,19 +12,19 @@ const App = () =>{
     const [isDark, setDark] = createSignal(false);
 
     const toggleDark = () =>{
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        localStorage.setItem(appThemeKey, isDark ? 'dark' : 'light');
-        
-        setDark(isDark)
+        const currentTheme = document.documentElement.getAttribute("data-theme") ?? "light";
+
+        const newTheme = currentTheme === "light" ? "dark" : "light"
+        localStorage.setItem(appThemeKey, newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        setDark(newTheme === "dark");
     }
 
     onMount(()=>{
-        const saved = localStorage.getItem(appThemeKey);
-        if (saved === 'dark') {
-            document.body.classList.add('dark');
-            setDark(true)
-        }
+        const saved = localStorage.getItem(appThemeKey) ?? "light";
+        document.documentElement.setAttribute('data-theme', saved);
+
+        setDark(saved === 'dark')
     });
 
     return (
@@ -38,7 +38,7 @@ const App = () =>{
                     <Route path="/projects/:id" component={Project} />
                 </Router>
             </main>
-            <button class="theme-toggle" id="themeToggleBtn" onClick={toggleDark}>
+            <button class="theme-toggle" onClick={toggleDark}>
                 <i class={ isDark() ? "fas fa-sun" : "fas fa-moon" }></i> <span>{ isDark() ? "Light Mode" : "Dark Mode" }</span>
             </button>
         </div>

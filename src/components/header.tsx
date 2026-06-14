@@ -1,5 +1,7 @@
 import { createSignal, onCleanup, onMount, type JSX } from "solid-js";
 
+import "../css/header.scss"
+
 const scrollToSection = (id: string, offset: number = 80) =>{
     const element = document.getElementById(id);
     const main = Array.from(document.getElementsByTagName("main"))[0]
@@ -16,12 +18,9 @@ const scrollToSection = (id: string, offset: number = 80) =>{
 
 const HeaderItem = (props: { id: string, label: string, active: string, icon: string, click: (id: string) => void }) =>{
      // Handles clicking a navigation link
-    const handleNavClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = () => {
-        /*event.preventDefault();
-        if( document.location.pathname !== "/"){
-            document.location = "/"
-        }
-        scrollToSection(props.id, 0);*/
+    const handleNavClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = (event) => {
+        event.preventDefault();
+        scrollToSection(props.id, 0);
     };
 
     return (

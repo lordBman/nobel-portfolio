@@ -1,0 +1,9 @@
+@mixin generate-themes($themes-map){
+    @each $theme-name, $map-variables in $themes-map{
+        html[data-theme="#{$theme-name}"]{
+            @each $key, $value in $map-variables{
+                --color-#{$key}: #{$value};
+            }
+        }
+    }
+}

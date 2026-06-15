@@ -24,8 +24,10 @@ const Project = () => {
             <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
                 <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={data().project?.image} alt="screenshot" />
                 <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
-                    <div style={{ flex: 1 }}>
-                        <h3>{data().project?.name}</h3>
+                    <div class="surface-content" style={{ flex: "none" }}>
+                        <h3 style={{ display: "flex", "flex-direction": "row", "align-items": "center", gap: "8px" }}>
+                            <div class="icon-circle" style={{ "box-shadow": "none", "font-size": "28px" }}><i class="glyphs--mobile-bold"></i></div>{data().project?.name}
+                        </h3>
                         <div class="platform-icons">
                             <Show when={(data().project as any).platforms?.android}>
                                 <span><i class="fab fa-android"></i> Android</span>
@@ -50,16 +52,54 @@ const Project = () => {
                         
                         <div class="section-subtitle"><i class="fas fa-star"></i> Key Features</div>
                         <div class="features-grid">
-                            <div class="timeline-content feature-item"><i class="fas fa-temperature-low"></i> Current conditions (feels like, wind, humidity)</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-calendar-week"></i> 5‑day forecast + hourly breakdown</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-map-marker-alt"></i> Location management & favorite cities</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-moon"></i> Light & Dark mode (system / manual)</div>
-                            <div class="feature-item timeline-content"><i class="fa7-solid--tablet-alt" aria-hidden="true"></i> Tablet‑optimised responsive layout</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-chart-line"></i> Real-time weather API integration</div>
+                            <div class="surface-content feature-item">
+                                <i class="fas fa-temperature-low"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Current conditions</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>feels like, wind, humidity</span>
+                                </div>
+                            </div>
+                            <div class="surface-content feature-item">
+                                <i class="fas fa-calendar-week"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Hourly/Daily Forecast</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Get 5 days and hourly wether forecast</span>
+                                </div>
+                            </div>
+                            <div class="surface-content feature-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Location management</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Add and remove Cities</span>
+                                </div>
+                            </div>
+                            <div class="surface-content feature-item">
+                                <i class="fas fa-moon"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Light & Dark mode</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Support of light and dark mode</span>
+                                </div>
+                            </div>
+                            <div class="surface-content feature-item">
+                                <i class="fa7-solid--tablet-alt"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Responsive</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Tablet‑optimised responsive layout</span>
+                                </div>
+                            </div>
+                            <div class="surface-content feature-item">
+                                <i class="fas fa-chart-line"></i>
+                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
+                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Real-time Update</span>
+                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Real-time weather API integration</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
+                    <div class="surface-content" style={{ flex: "none", "margin-top": "20px" }}>
                         <div class="section-subtitle"><i class="fas fa-microchip"></i> Technical Highlights</div>
-                        <ul class="highlight-list">
+                        <ul class="highlight-list" style={{ color: "var(--color-on-surface-variant)" }}>
                             <li><strong>BLoC</strong> – Centralised state management (weather data, theme, location) ensuring predictable updates and testability.</li>
                             <li><strong>Modular design</strong> – Separated into features (weather, settings, location search, theme) for easier maintenance and scalability.</li>
                             <li><strong>API integration</strong> – Fetches live weather data via REST; handles loading, error, and empty states gracefully.</li>
@@ -67,7 +107,7 @@ const Project = () => {
                         </ul>
                     </div>
                 </div>
-                <div class="timeline-content" style={{ flex: "none", width: "14rem", padding: "1.5rem 0" }}>
+                <div class="surface-content" style={{ flex: "none", width: "16rem", padding: "1.5rem 0" }}>
                     <h3 style={{ "padding-left": "1.5rem" }}>Downloads</h3>
                     <div class="btn-group" style={{ "flex-direction": "column", "padding-left": "1.5rem", "padding-right": "1.5rem" }}>
                         <a href="#" class="btn btn-outline"><i class="fab fa-google-play"></i> Android APK</a>

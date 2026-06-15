@@ -92,7 +92,7 @@ const blinkArkUI: MobileProject = {
 const blink: WebProject = {
     id: "jfvhfuvhfvhfvfv",
     name: "BLink",
-    image: "https://github.com/lordBman/BLink-API/blob/bun-port/Desktop%20-%20Homepage.png?raw=true",
+    image: "https://github.com/lordBman/BLink-API/blob/bun-port/Web-Homepage.png?raw=true",
     desc: "BLink is a full‑featured link shortener Website. It allows users to shorten long URLs, Turning any long URL into a clean, shareable BLink in seconds. Track clicks, manage your links, and take control of your sharing — right from your the portal or phone..",
     techs: [  "API", "Bun", "ElysiaJS", "Authentication", "JWT", "Responsive Design", "Modular Architecture", "REST API", "Analytics", "QRCode generation" ],
     url: "#"

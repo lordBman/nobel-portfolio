@@ -55,42 +55,42 @@ const Project = () => {
                             <div class="surface-content feature-item">
                                 <i class="fas fa-temperature-low"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Current conditions</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Current conditions</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>feels like, wind, humidity</span>
                                 </div>
                             </div>
                             <div class="surface-content feature-item">
                                 <i class="fas fa-calendar-week"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Hourly/Daily Forecast</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Hourly/Daily Forecast</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Get 5 days and hourly wether forecast</span>
                                 </div>
                             </div>
                             <div class="surface-content feature-item">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Location management</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Location management</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Add and remove Cities</span>
                                 </div>
                             </div>
                             <div class="surface-content feature-item">
                                 <i class="fas fa-moon"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Light & Dark mode</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Light & Dark mode</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Support of light and dark mode</span>
                                 </div>
                             </div>
                             <div class="surface-content feature-item">
                                 <i class="fa7-solid--tablet-alt"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Responsive</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Responsive</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Tablet‑optimised responsive layout</span>
                                 </div>
                             </div>
                             <div class="surface-content feature-item">
                                 <i class="fas fa-chart-line"></i>
                                 <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Real-time Update</span>
+                                    <span style={{ "font-size": "14px", "font-weight": "600" }}>Real-time Update</span>
                                     <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Real-time weather API integration</span>
                                 </div>
                             </div>

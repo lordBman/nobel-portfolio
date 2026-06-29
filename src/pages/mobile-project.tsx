@@ -1,13 +1,13 @@
 import { createAsync, useParams } from "@solidjs/router";
-import { getProject, type MobileProject, type WebProject } from "../data";
+import { allMobileProjects, type MobileProjectDetails } from "../data";
 import { For, Show } from "solid-js";
+import { ProjectFeatureView } from "../components";
 
-interface Data{ project?: MobileProject | WebProject, loading: boolean }
+interface Data{ project?: MobileProjectDetails, loading: boolean }
 
 const loader = async(id: string): Promise<Data> =>{
     try{
-        const result = await getProject(id);
-        
+        const result = allMobileProjects.find((project)=> project.id === id);
         return { project: result, loading: false }
     }catch(error){
         console.error(error)
@@ -15,17 +15,19 @@ const loader = async(id: string): Promise<Data> =>{
     return { loading: false }
 }
 
-const Project = () => {
+const MobileProjectPage = () => {
     const { id } = useParams();
     const data = createAsync<Data>(() => loader(id!), { initialValue: { loading: true } });
     
     return (
-        <Show when={data().project}>
-            <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+        <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+            <Show when={data().project}>
                 <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={data().project?.image} alt="screenshot" />
                 <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
-                    <div style={{ flex: 1 }}>
-                        <h3>{data().project?.name}</h3>
+                    <div class="surface-content" style={{ flex: "none" }}>
+                        <h3 style={{ display: "flex", "flex-direction": "row", "align-items": "center", gap: "8px" }}>
+                            <div class="icon-circle" style={{ "box-shadow": "none", "font-size": "28px" }}><i class="glyphs--mobile-bold"></i></div>{data().project?.name}
+                        </h3>
                         <div class="platform-icons">
                             <Show when={(data().project as any).platforms?.android}>
                                 <span><i class="fab fa-android"></i> Android</span>
@@ -48,26 +50,32 @@ const Project = () => {
                             </For>
                         </div>
                         
-                        <div class="section-subtitle"><i class="fas fa-star"></i> Key Features</div>
-                        <div class="features-grid">
-                            <div class="timeline-content feature-item"><i class="fas fa-temperature-low"></i> Current conditions (feels like, wind, humidity)</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-calendar-week"></i> 5‑day forecast + hourly breakdown</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-map-marker-alt"></i> Location management & favorite cities</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-moon"></i> Light & Dark mode (system / manual)</div>
-                            <div class="feature-item timeline-content"><i class="fa7-solid--tablet-alt" aria-hidden="true"></i> Tablet‑optimised responsive layout</div>
-                            <div class="feature-item timeline-content"><i class="fas fa-chart-line"></i> Real-time weather API integration</div>
-                        </div>
-
-                        <div class="section-subtitle"><i class="fas fa-microchip"></i> Technical Highlights</div>
-                        <ul class="highlight-list">
-                            <li><strong>BLoC</strong> – Centralised state management (weather data, theme, location) ensuring predictable updates and testability.</li>
-                            <li><strong>Modular design</strong> – Separated into features (weather, settings, location search, theme) for easier maintenance and scalability.</li>
-                            <li><strong>API integration</strong> – Fetches live weather data via REST; handles loading, error, and empty states gracefully.</li>
-                            <li><strong>Responsive UI</strong> – Custom <code>LayoutBuilder</code> and <code>MediaQuery</code> breakpoints for phone/tablet adaptation.</li>
-                        </ul>
+                        <Show when={data().project?.features}>
+                            <div class="section-subtitle"><i class="fas fa-star"></i> Key Features</div>
+                            <div class="features-grid">
+                                <For each={data().project?.features ?? []}>
+                                    {(feature) => (
+                                        <ProjectFeatureView feature={feature} />
+                                    ) }
+                                </For>
+                            </div>
+                        </Show>
                     </div>
+
+                    <Show when={data().project?.tech_details}>
+                        <div class="surface-content" style={{ flex: "none", "margin-top": "20px" }}>
+                            <div class="section-subtitle"><i class="fas fa-microchip"></i> Technical Highlights</div>
+                            <ul class="highlight-list" style={{ color: "var(--color-on-surface-variant)" }}>
+                                <For each={data().project?.tech_details ?? []}>
+                                    {(item) =>(
+                                        <li><strong>{item.title}</strong> – {item.description}</li>
+                                    )}
+                                </For>
+                            </ul>
+                        </div>
+                    </Show>
                 </div>
-                <div class="timeline-content" style={{ flex: "none", width: "14rem", padding: "1.5rem 0" }}>
+                <div class="surface-content" style={{ flex: "none", width: "16rem", padding: "1.5rem 0" }}>
                     <h3 style={{ "padding-left": "1.5rem" }}>Downloads</h3>
                     <div class="btn-group" style={{ "flex-direction": "column", "padding-left": "1.5rem", "padding-right": "1.5rem" }}>
                         <a href="#" class="btn btn-outline"><i class="fab fa-google-play"></i> Android APK</a>
@@ -78,9 +86,9 @@ const Project = () => {
                         <a href="#" class="btn btn-primary" target="_blank"><i class="fab fa-github"></i> Source code</a>
                     </div>
                 </div>
-            </section>
-        </Show>
+            </Show>
+        </section>
     );
 }
 
-export default Project;
+export default MobileProjectPage;

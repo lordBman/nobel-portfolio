@@ -1,0 +1,84 @@
+@use "common" as common;
+
+/* hero */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: start;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.hero-badge {
+    background: var(--color-primary-container);
+    color: var(--color-primary);
+    padding: 6px 12px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.hero-content div h2 {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 4.2rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.hero-content div span {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+.hero-content p {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1.4px;
+    color: var(--color-on-surface-variant);
+    max-width: 750px;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+.contact-chip {
+    @include common.outline(var(--color-border-variant), 1px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 40px;
+    color: var(--color-on-surface);
+    font-size: 0.9rem;
+}
+
+.hero-avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    @include common.border(var(--color-transparent-surface), 3px);
+    
+    width: 200px;
+    height: 200px;
+    background: var(--color-avatar-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+}

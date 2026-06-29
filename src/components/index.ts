@@ -1,7 +1,6 @@
 import Header from "./header";
 import Background from "./background";
-import WebProjectView from "./webproject-view";
-import MobileProjectView from "./mobileproject-view";
 import { MobileProjectItem, WebProjectItem } from "./project-item";
+import ProjectFeatureView from "./project-feature";
 
-export { Header, Background, WebProjectView, MobileProjectView, MobileProjectItem, WebProjectItem };
+export { Header, Background, MobileProjectItem, WebProjectItem, ProjectFeatureView };

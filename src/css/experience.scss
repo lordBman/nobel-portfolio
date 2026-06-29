@@ -1,3 +1,5 @@
+@use "common" as common;
+
 /* ========= MODERN TIMELINE (based on screenshot design, using CV data) ========= */
 .timeline {
     display: flex;
@@ -14,13 +16,9 @@
     top: 12px;
     bottom: 12px;
     width: 2px;
-    background: linear-gradient(to bottom, #3b82f6, #94a3b8, #cbd5e1);
+    background: var(--color-timeline-line);
     border-radius: 2px;
     opacity: 0.35;
-}
-body.dark .timeline::before {
-    background: linear-gradient(to bottom, #3b82f6, #475569, #334155);
-    opacity: 0.5;
 }
 
 /* each experience card */
@@ -28,6 +26,11 @@ body.dark .timeline::before {
     display: flex;
     gap: 1rem;
     position: relative;
+
+    &:hover .icon-circle {
+        transform: scale(1.03);
+        border-color: var(--color-primary);
+    }
 }
 
 /* left side: date range pill */
@@ -35,27 +38,21 @@ body.dark .timeline::before {
     flex-shrink: 0;
     text-align: center;
 }
+
 .year-badge {
-    background: rgba(255,255,255,0.6);
-    border: 1px solid #e2e8f0;
+    @include common.outline(var(--color-border-variant), 1px);
+    @include common.border-shadow();
+
     border-radius: 100px;
     padding: 16px 10px;
     font-weight: 700;
     font-size: 0.80rem;
     display: inline-block;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    backdrop-filter: blur(2px);
-    color: #1e293b;
+    color: var(--color-on-surface-variant);
 
     width: 10rem;
 }
-body.dark .year-badge {
-    background: rgba(30, 41, 59, 0.2);
-    border-color: #334155;
-    color: #e2e8f0;
-}
 
-/* center icon / connector */
 .timeline-icon {
     flex-shrink: 0;
     width: 48px;
@@ -64,54 +61,28 @@ body.dark .year-badge {
     padding-top: 6px;
     position: relative;
 }
+
 .icon-circle {
+    @include common.border-shadow();
+    @include common.border(var(--color-border-variant), 1px);
+
     width: 40px;
     height: 40px;
-    background: white;
+    background: var(--color-avatar-border);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.05), 0 0 0 3px #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #3b82f6;
+    
+    color: var(--color-primary);
     font-size: 1.2rem;
     transition: all 0.2s;
-}
-body.dark .icon-circle {
-    background: rgba(30, 41, 59, 0.2);
-    border-color: #334155;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-    color: #60a5fa;
-}
-.timeline-item:hover .icon-circle {
-    transform: scale(1.03);
-    border-color: #3b82f6;
 }
 
 /* right side content card */
 .timeline-content {
+    @include common.content();
     flex: 1;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(2px);
-    border-radius: 1.25rem;
-    padding: 1.5rem 1.8rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
-    border: 1px solid #eef2ff;
-    transition: 0.2s;
-}
-body.dark .timeline-content {
-    background: rgba(30, 41, 59, 0.2);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.timeline-content:hover {
-    border-color: #cbd5e1;
-    transform: translateX(2px);
-}
-
-body.dark .timeline-content:hover {
-    border-color: #60a5fa;
 }
 
 .role-title {
@@ -126,25 +97,19 @@ body.dark .timeline-content:hover {
 .company {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #3b82f6;
+    color: var(--color-primary);
     margin-bottom: 0.75rem;
     display: inline-block;
-    background: #eff6ff;
+    background: var(--color-primary-container);
     padding: 2px 12px;
     border-radius: 30px;
 }
-body.dark .company {
-    background: #1e2a47;
-    color: #93c5fd;
-}
+
 .description {
-    color: #334155;
+    color: var(--color-on-surface-variant);
     font-size: 0.9rem;
     font-weight: 300;
     letter-spacing: 1.2px;
-}
-body.dark .description {
-    color: #cbd5e6;
 }
 
 .period-mobile {

@@ -2,7 +2,7 @@ import { createSignal, For, onMount, Show } from "solid-js";
 import { MobileProjectItem, WebProjectItem } from "../components";
 import { allMobileProjects, allWebProjects, type MobileProject, type WebProject } from "../data";
 
-import "../css/projects.css"
+import "../css/projects.scss"
 
 const filter = (projects: MobileProject[] | WebProject[], filterText = '') => {
     const lowerFilter = filterText.toLowerCase().trim();
@@ -19,7 +19,7 @@ const filter = (projects: MobileProject[] | WebProject[], filterText = '') => {
     return projects
 }
 
-const AllProjects = () =>{
+const AllProjectsPage = () =>{
     const [getChoice, setChoice] = createSignal<"mobile" | "web">("mobile");
     const [getFilter, setFilter] = createSignal("")
 
@@ -77,4 +77,4 @@ const AllProjects = () =>{
     );
 }
 
-export default AllProjects;
+export default AllProjectsPage;

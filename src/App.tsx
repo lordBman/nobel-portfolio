@@ -3,28 +3,29 @@ import { Background, Header } from "./components"
 import './css/icons.css'
 import { createSignal, onMount } from "solid-js"
 import { Route, Router } from "@solidjs/router"
-import Home from "./pages/home"
-import AllProjects from "./pages/all-project"
-import Project from "./pages/project"
+import HomePage from "./pages/home"
+import AllProjectsPage from "./pages/all-project"
+import MobileProjectPage from "./pages/mobile-project"
+import WebProjectPage from "./pages/web-project"
 
 const appThemeKey = 'appTheme'
 const App = () =>{
     const [isDark, setDark] = createSignal(false);
 
     const toggleDark = () =>{
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        localStorage.setItem(appThemeKey, isDark ? 'dark' : 'light');
-        
-        setDark(isDark)
+        const currentTheme = document.documentElement.getAttribute("data-theme") ?? "light";
+
+        const newTheme = currentTheme === "light" ? "dark" : "light"
+        localStorage.setItem(appThemeKey, newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        setDark(newTheme === "dark");
     }
 
     onMount(()=>{
-        const saved = localStorage.getItem(appThemeKey);
-        if (saved === 'dark') {
-            document.body.classList.add('dark');
-            setDark(true)
-        }
+        const saved = localStorage.getItem(appThemeKey) ?? "light";
+        document.documentElement.setAttribute('data-theme', saved);
+
+        setDark(saved === 'dark')
     });
 
     return (
@@ -33,12 +34,13 @@ const App = () =>{
             <Header />
             <main>
                 <Router>
-                    <Route path="/" component={Home} />
-                    <Route path="/projects" component={AllProjects} />
-                    <Route path="/projects/:id" component={Project} />
+                    <Route path="/" component={HomePage} />
+                    <Route path="/projects" component={AllProjectsPage} />
+                    <Route path="/projects/mobile/:id" component={MobileProjectPage} />
+                    <Route path="/projects/web/:id" component={WebProjectPage} />
                 </Router>
             </main>
-            <button class="theme-toggle" id="themeToggleBtn" onClick={toggleDark}>
+            <button class="theme-toggle" onClick={toggleDark}>
                 <i class={ isDark() ? "fas fa-sun" : "fas fa-moon" }></i> <span>{ isDark() ? "Light Mode" : "Dark Mode" }</span>
             </button>
         </div>

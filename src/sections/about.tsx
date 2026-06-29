@@ -1,12 +1,14 @@
 import { SolidTyper } from "solid-typer";
 import nobelImage from '../assets/nobel.jpg';
 
+import "../css/about.scss";
+
 const About = () => {
     return (
         <section class="container" id="about" style={{ display: 'flex', 'align-items': 'center', 'justify-content': 'center' }}>
             <div class="hero">
                 <div class="hero-avatar">
-                    <div class="avatar-placeholder">
+                    <div class="avatar">
                         <img src={nobelImage} alt="Nobel Okelekele" style={{ width: '100%', height: '100%', 'object-fit': 'cover', 'border-radius': '50%' }} />
                     </div>
                 </div>

@@ -28,16 +28,18 @@ const App = () =>{
         setDark(saved === 'dark')
     });
 
+    const baseUrl = import.meta.env.VITE_BASE_URL ?? "";
+
     return (
         <div class="app-container">
             <Background isDark={isDark()} />
             <Header />
             <main>
                 <Router>
-                    <Route path="/" component={HomePage} />
-                    <Route path="/projects" component={AllProjectsPage} />
-                    <Route path="/projects/mobile/:id" component={MobileProjectPage} />
-                    <Route path="/projects/web/:id" component={WebProjectPage} />
+                    <Route path={`${baseUrl}/`} component={HomePage} />
+                    <Route path={`${baseUrl}/projects`} component={AllProjectsPage} />
+                    <Route path={`${baseUrl}/projects/mobile/:id`} component={MobileProjectPage} />
+                    <Route path={`${baseUrl}/projects/web/:id`} component={WebProjectPage} />
                 </Router>
             </main>
             <button class="theme-toggle" onClick={toggleDark}>

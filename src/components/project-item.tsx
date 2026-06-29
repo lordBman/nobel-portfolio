@@ -4,7 +4,7 @@ import type { MobileProject, WebProject } from "../data"
 
 const MobileProjectItem = (props: { project: MobileProject }) =>{
     const clicked = () =>{
-        document.location = `/projects/${props.project.id}`
+        document.location.pathname = `/projects/mobile/${props.project.id}`
     }
 
     return (
@@ -55,7 +55,7 @@ const MobileProjectItem = (props: { project: MobileProject }) =>{
 
 const WebProjectItem = (props: { project: WebProject }) =>{
     const clicked = () =>{
-        document.location = `/projects/${props.project.id}`
+        document.location.pathname = `/projects/web/${props.project.id}`
     }
 
     return (

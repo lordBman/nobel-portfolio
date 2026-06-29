@@ -19,7 +19,7 @@ const filter = (projects: MobileProject[] | WebProject[], filterText = '') => {
     return projects
 }
 
-const AllProjects = () =>{
+const AllProjectsPage = () =>{
     const [getChoice, setChoice] = createSignal<"mobile" | "web">("mobile");
     const [getFilter, setFilter] = createSignal("")
 
@@ -77,4 +77,4 @@ const AllProjects = () =>{
     );
 }
 
-export default AllProjects;
+export default AllProjectsPage;

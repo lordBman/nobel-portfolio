@@ -1,13 +1,13 @@
 import { createAsync, useParams } from "@solidjs/router";
-import { getProject, type MobileProject, type WebProject } from "../data";
+import { allMobileProjects, type MobileProjectDetails } from "../data";
 import { For, Show } from "solid-js";
+import { ProjectFeatureView } from "../components";
 
-interface Data{ project?: MobileProject | WebProject, loading: boolean }
+interface Data{ project?: MobileProjectDetails, loading: boolean }
 
 const loader = async(id: string): Promise<Data> =>{
     try{
-        const result = await getProject(id);
-        
+        const result = allMobileProjects.find((project)=> project.id === id);
         return { project: result, loading: false }
     }catch(error){
         console.error(error)
@@ -15,13 +15,13 @@ const loader = async(id: string): Promise<Data> =>{
     return { loading: false }
 }
 
-const Project = () => {
+const MobileProjectPage = () => {
     const { id } = useParams();
     const data = createAsync<Data>(() => loader(id!), { initialValue: { loading: true } });
     
     return (
-        <Show when={data().project}>
-            <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+        <section class="container container-padding" id="projects" style={{ display: "flex", "flex-direction": "row", gap: "2rem", "align-items": "start" }}>
+            <Show when={data().project}>
                 <img style={{ width: "200px", "border-radius": "30px", border: "solid 2px #e2e8f0" }} src={data().project?.image} alt="screenshot" />
                 <div class="card-content" style={{ flex: 1, display: "flex", "flex-direction": "column" }}>
                     <div class="surface-content" style={{ flex: "none" }}>
@@ -50,62 +50,30 @@ const Project = () => {
                             </For>
                         </div>
                         
-                        <div class="section-subtitle"><i class="fas fa-star"></i> Key Features</div>
-                        <div class="features-grid">
-                            <div class="surface-content feature-item">
-                                <i class="fas fa-temperature-low"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Current conditions</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>feels like, wind, humidity</span>
-                                </div>
+                        <Show when={data().project?.features}>
+                            <div class="section-subtitle"><i class="fas fa-star"></i> Key Features</div>
+                            <div class="features-grid">
+                                <For each={data().project?.features ?? []}>
+                                    {(feature) => (
+                                        <ProjectFeatureView feature={feature} />
+                                    ) }
+                                </For>
                             </div>
-                            <div class="surface-content feature-item">
-                                <i class="fas fa-calendar-week"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Hourly/Daily Forecast</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Get 5 days and hourly wether forecast</span>
-                                </div>
-                            </div>
-                            <div class="surface-content feature-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Location management</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Add and remove Cities</span>
-                                </div>
-                            </div>
-                            <div class="surface-content feature-item">
-                                <i class="fas fa-moon"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Light & Dark mode</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Support of light and dark mode</span>
-                                </div>
-                            </div>
-                            <div class="surface-content feature-item">
-                                <i class="fa7-solid--tablet-alt"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Responsive</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Tablet‑optimised responsive layout</span>
-                                </div>
-                            </div>
-                            <div class="surface-content feature-item">
-                                <i class="fas fa-chart-line"></i>
-                                <div style={{ display: "flex", "flex-direction": "column", "align-items": "start", "justify-content": "start", height: "100%" }}>
-                                    <span style={{ "font-size": "15px", "font-weight": "600" }}>Real-time Update</span>
-                                    <span style={{ "font-size": "12px", "font-weight": "lighter", "color": "var(--color-on-surface-variant)" }}>Real-time weather API integration</span>
-                                </div>
-                            </div>
-                        </div>
+                        </Show>
                     </div>
 
-                    <div class="surface-content" style={{ flex: "none", "margin-top": "20px" }}>
-                        <div class="section-subtitle"><i class="fas fa-microchip"></i> Technical Highlights</div>
-                        <ul class="highlight-list" style={{ color: "var(--color-on-surface-variant)" }}>
-                            <li><strong>BLoC</strong> – Centralised state management (weather data, theme, location) ensuring predictable updates and testability.</li>
-                            <li><strong>Modular design</strong> – Separated into features (weather, settings, location search, theme) for easier maintenance and scalability.</li>
-                            <li><strong>API integration</strong> – Fetches live weather data via REST; handles loading, error, and empty states gracefully.</li>
-                            <li><strong>Responsive UI</strong> – Custom <code>LayoutBuilder</code> and <code>MediaQuery</code> breakpoints for phone/tablet adaptation.</li>
-                        </ul>
-                    </div>
+                    <Show when={data().project?.tech_details}>
+                        <div class="surface-content" style={{ flex: "none", "margin-top": "20px" }}>
+                            <div class="section-subtitle"><i class="fas fa-microchip"></i> Technical Highlights</div>
+                            <ul class="highlight-list" style={{ color: "var(--color-on-surface-variant)" }}>
+                                <For each={data().project?.tech_details ?? []}>
+                                    {(item) =>(
+                                        <li><strong>{item.title}</strong> – {item.description}</li>
+                                    )}
+                                </For>
+                            </ul>
+                        </div>
+                    </Show>
                 </div>
                 <div class="surface-content" style={{ flex: "none", width: "16rem", padding: "1.5rem 0" }}>
                     <h3 style={{ "padding-left": "1.5rem" }}>Downloads</h3>
@@ -118,9 +86,9 @@ const Project = () => {
                         <a href="#" class="btn btn-primary" target="_blank"><i class="fab fa-github"></i> Source code</a>
                     </div>
                 </div>
-            </section>
-        </Show>
+            </Show>
+        </section>
     );
 }
 
-export default Project;
+export default MobileProjectPage;

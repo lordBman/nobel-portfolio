@@ -1,6 +1,5 @@
 import { createSignal, onCleanup, onMount, type JSX } from "solid-js";
-
-import "../css/header.scss"
+import "../css/header.scss";
 
 const scrollToSection = (id: string, offset: number = 80) =>{
     const element = document.getElementById(id);
@@ -16,18 +15,22 @@ const scrollToSection = (id: string, offset: number = 80) =>{
     }
 }
 
-const HeaderItem = (props: { id: string, label: string, active: string, icon: string, click: (id: string) => void }) =>{
+const HeaderItem = (props: { id: string, label: string, active: string, icon: string, load: () => void }) =>{
      // Handles clicking a navigation link
-    const handleNavClick: JSX.EventHandler<HTMLAnchorElement, MouseEvent> = (event) => {
-        event.preventDefault();
-        scrollToSection(props.id, 0);
+    const handleNavClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (event) => {
+        if(document.location.pathname === "/"){
+            event.preventDefault();
+            scrollToSection(props.id, 0);
+        }else{
+            document.location = `/#${props.id}`
+        }
     };
 
     return (
         <li>
-            <a href={`/#${props.id}`} class={ props.active === props.id ? "active" : "" } onClick={handleNavClick}>
+            <div class={ props.active === props.id ? "active" : "" } onClick={handleNavClick}>
                 <i class={ props.icon } style={{ "font-size": "2rem" }} /> {props.label}
-            </a>
+            </div>
         </li>
     );
 }
@@ -35,28 +38,32 @@ const HeaderItem = (props: { id: string, label: string, active: string, icon: st
 const Header = () =>{
     const [activeSection, setActiveSection] = createSignal('home');
 
-    onMount(() => {
+    // Configure observer: a section is considered active when > 40% visible
+    let observer: IntersectionObserver = new IntersectionObserver((entries) => {
+        // Find the entry with the highest intersection ratio
+        let bestEntry = null;
+        let bestRatio = 0;
+        
+        for (const entry of entries) {
+            if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+                bestRatio = entry.intersectionRatio;
+                bestEntry = entry;
+            }
+        }
+        
+        if (bestEntry) {
+            const activeId = bestEntry.target.id;
+            setActiveSection(activeId);
+        }
+    }, { threshold: [0.3, 0.6, 0.9] }); // trigger at different visibility levels
+
+    const load = () =>{
         // Get all section elements
         const sectionElements =  Array.from(document.getElementsByTagName("section"));
 
-        // Configure observer: a section is considered active when > 40% visible
-        let observer: IntersectionObserver = new IntersectionObserver((entries) => {
-            // Find the entry with the highest intersection ratio
-            let bestEntry = null;
-            let bestRatio = 0;
-            
-            for (const entry of entries) {
-                if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
-                    bestRatio = entry.intersectionRatio;
-                    bestEntry = entry;
-                }
-            }
-            
-            if (bestEntry) {
-                const activeId = bestEntry.target.id;
-                setActiveSection(activeId);
-            }
-        }, { threshold: [0.3, 0.6, 0.9] }); // trigger at different visibility levels
+        const ids = sectionElements.map((section)=> section.id)
+        console.log(location.href)
+        console.log(JSON.stringify(ids))
 
         // Observe each section
         sectionElements.forEach(section => observer?.observe(section));
@@ -78,25 +85,27 @@ const Header = () =>{
             setActiveSection(activeId);
         }
         checkInitialActive();
+    }
+    
+    onMount(() => load())
 
-        // Cleanup observer when component unmounts
-        onCleanup(() => {
-            if (observer) observer.disconnect();
-        });
-    })
+    // Cleanup observer when component unmounts
+    onCleanup(() => {
+        if (observer) observer.disconnect();
+    });
     
     return (
         <header>
             <div class="nav-bar">
                 <div class="logo"><h1><i class="fas fa-code"></i> Nobel</h1></div>
                 <ul class="nav-links">
-                    <HeaderItem id="about" label="About" active={activeSection()} icon="glyphs--user-duo" click={setActiveSection}/>
-                    <HeaderItem id="experience" label="Experience" active={activeSection()} icon="glyphs--laptop-code-duo" click={setActiveSection} />
-                    <HeaderItem id="services" label="Services" active={activeSection()} icon="glyphs--layer-group-duo" click={setActiveSection}/>
-                    <HeaderItem id="projects" label="Projects" active={activeSection()} icon="glyphs--rocket-duo" click={setActiveSection}/>
+                    <HeaderItem id="about" label="About" active={activeSection()} icon="glyphs--user-duo" load={load}/>
+                    <HeaderItem id="experience" label="Experience" active={activeSection()} icon="glyphs--laptop-code-duo" load={load} />
+                    <HeaderItem id="services" label="Services" active={activeSection()} icon="glyphs--layer-group-duo" load={load}/>
+                    <HeaderItem id="projects" label="Projects" active={activeSection()} icon="glyphs--rocket-duo" load={load}/>
                 </ul>
                 <ul class="nav-links">
-                    <HeaderItem id="contact" label="Contact" active={activeSection()} icon="glyphs--mailbox-duo" click={setActiveSection}/>
+                    <HeaderItem id="contact" label="Contact" active={activeSection()} icon="glyphs--mailbox-duo" load={load}/>
                 </ul>
             </div>
         </header>

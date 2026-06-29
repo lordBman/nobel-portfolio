@@ -2,7 +2,7 @@ import { Experience, Services, Projects } from "../sections";
 import About from "../sections/about";
 import Contact from "../sections/contact";
 
-const Home = () =>{
+const HomePage = () =>{
     return (
         <>
             <About />
@@ -14,4 +14,4 @@ const Home = () =>{
     );
 }
 
-export default Home;
+export default HomePage;

@@ -55,7 +55,7 @@ const respawnCuboid = (mesh: THREE.Mesh) => {
 
     // Randomize position within view
     const newPosition = RandomUtils.randomPosition();
-    console.log(newPosition)
+    //console.log(newPosition)
     const newZ = Constants.NEAR_LIMIT - RandomUtils.random(0, 6)  
     mesh.position.set(newPosition.x, newPosition.y, newZ);
     (mesh as any).userData = { speed: RandomUtils.random(Constants.MIN_SPEED, Constants.MAX_SPEED) };

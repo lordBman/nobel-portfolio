@@ -3,9 +3,10 @@ import { Background, Header } from "./components"
 import './css/icons.css'
 import { createSignal, onMount } from "solid-js"
 import { Route, Router } from "@solidjs/router"
-import Home from "./pages/home"
-import AllProjects from "./pages/all-project"
-import Project from "./pages/project"
+import HomePage from "./pages/home"
+import AllProjectsPage from "./pages/all-project"
+import MobileProjectPage from "./pages/mobile-project"
+import WebProjectPage from "./pages/web-project"
 
 const appThemeKey = 'appTheme'
 const App = () =>{
@@ -33,9 +34,10 @@ const App = () =>{
             <Header />
             <main>
                 <Router>
-                    <Route path="/" component={Home} />
-                    <Route path="/projects" component={AllProjects} />
-                    <Route path="/projects/:id" component={Project} />
+                    <Route path="/" component={HomePage} />
+                    <Route path="/projects" component={AllProjectsPage} />
+                    <Route path="/projects/mobile/:id" component={MobileProjectPage} />
+                    <Route path="/projects/web/:id" component={WebProjectPage} />
                 </Router>
             </main>
             <button class="theme-toggle" onClick={toggleDark}>

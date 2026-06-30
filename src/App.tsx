@@ -28,7 +28,7 @@ const App = () =>{
         setDark(saved === 'dark')
     });
 
-    const baseUrl = import.meta.env.VITE_BASE_URL ?? "";
+    const baseUrl = import.meta.env.VITE_BASE_URL ?? "/nobel-portfolio";
 
     return (
         <div class="app-container">
